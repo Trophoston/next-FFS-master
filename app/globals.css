@@ -4,9 +4,20 @@
 
 body{
     height: 200vh;
+    background-color: #e8dfca;
+}
+nav{
+    padding-bottom: 73px;
+    z-index: 1000;
 }
 
-nav{
-    padding-bottom: 83px;
+main{
+    margin-left: 80px;
 }
+
+  
+
+
+
+
 
