@@ -29,7 +29,6 @@ export default function RootLayout({ children }) {
         <Header />
 
 
-        <Slidebar />
 
       <main>
         {children}

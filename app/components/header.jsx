@@ -1,8 +1,10 @@
 'use client';
 import { usePathname } from 'next/navigation';
+import React, { useEffect } from 'react';
 import Link from 'next/link'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faMountainSun, faMoneyBillWheat, faJarWheat, faCloudSunRain } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faMountainSun, faMoneyBillWheat, faJarWheat, faCloudSunRain, faBars } from "@fortawesome/free-solid-svg-icons";
+import Slidebar from './slidebar';
 
 
 // var path = useRouter() 
@@ -13,11 +15,14 @@ var house, JarWheat, MoneyBillWheat, MountainSun, CloudSunRain;
 
 
 const Header = () => {
+
+
+
   const path = usePathname();
 
-  const active = "border-b-4 border-gray-100 text-white flex-auto px-3 pt-1 pb-1 ";
+  const active = "border-b-4 border-gray-100 text-white flex-auto px-3 pt-1 pb-1 text-2xl ";
 
-  const nonactive = "text-gray-400 px-3 pt-1 mb-1 rounded-md hover:bg-[#1a3f2e]  hover:text-white";
+  const nonactive = "text-gray-400 px-3 pt-1 mb-1 rounded-md hover:bg-[#1a3f2e]  hover:text-white text-2xl  ";
 
     // console.log(path)
 
@@ -44,33 +49,41 @@ const Header = () => {
   else {
   }
 
+
+  
+
+
   return (
     <nav className='relative'>
       <div className="fixed py-0 navbar bg-[#1a4d2e] shadow-xl ">
         <div className="navbar-start ">
 
+
+
         <div className=" ">
             <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content flex flex-col">
-              <div className="">
-                <div className="flex-none">
-                  <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                  </label>
-                </div>
-              </div>
-            </div>
             
+{/* 
             <div className="drawer-side">
-              <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
-              <ul className="menu p-4 w-80 min-h-full bg-base-200">
-                <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                
+            <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
+                <ul className="w-100 min-h-full bg-base-200 text-base-content">
+                <li className=" text-white flex-auto px-3 pt-3 pb-14 text-2xl ">
+                <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost text-white">
+                       <FontAwesomeIcon  icon={faBars} style={{ width: "40px", height: "40px" }} /> 
                   </label>
-                <li><a>Sidebar Item 1</a></li>
-                <li><a>Sidebar Item 2</a></li>
-              </ul>
-            </div>
+                </li>
+            <li className={house}><Link href={"/"} ><FontAwesomeIcon icon={faHouse} style={{ width: "45px", height: "45px" }} /> หน้าแรก</Link></li>
+            <li className={JarWheat}><Link href={"/fertul"} ><FontAwesomeIcon icon={faJarWheat} style={{ width: "45px", height: "45px" }} /> การคำนวนปุ๋ย</Link></li>
+            <li className={MoneyBillWheat}><Link href={"/vegprice"} ><FontAwesomeIcon icon={faMoneyBillWheat} style={{ width: "45px", height: "45px" }} /> วิเคราห์ภูมิศาสตร์</Link></li>
+            <li className={MountainSun}><Link href={"/terrian"} ><FontAwesomeIcon icon={faMountainSun} style={{ width: "45px", height: "45px" }} /> วิเคราะห์สภาพอากาศ</Link></li>
+            <li className={CloudSunRain}><Link href={"/weather"} ><FontAwesomeIcon icon={faCloudSunRain} style={{ width: "45px", height: "45px" }} /> ราคาพืชผล</Link></li>
+            <li className={CloudSunRain}><Link href={"/weather"} ><FontAwesomeIcon icon={faCloudSunRain} style={{ width: "45px", height: "45px" }} /> ผลงานนักเรียน</Link></li>
+                </ul>
+
+            </div> */}
+            
+            
           </div>
 
 
@@ -91,7 +104,8 @@ const Header = () => {
             </li>
           </ul>
         </div> */}
-          <a href='#' className="text-xl uppercase mx-5">FFS-Thailand{usePathname()}</a>
+          <a href='#' className=" text-xl uppercase mx-5" style={{padding:" 0  0 0 64px"}}><img src=''></img>FFS-Thailand</a>
+
         </div>
         <div className="navbar-center hidden lg:flex align-bottom ">
           <ul className="flex gap-7 pb-0 pt-3  ">
@@ -140,7 +154,9 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <Slidebar />
     </nav>
+
   )
 }
 export default Header
