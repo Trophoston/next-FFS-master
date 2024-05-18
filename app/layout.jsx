@@ -1,11 +1,11 @@
-import { Inter } from "next/font/google";
+import localFont from 'next/font/local'
 import "./globals.css";
 import Header from './components/header'
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import Slidebar from "./components/slidebar";
 
-const inter = Inter({ subsets: ["latin"] });
+const myFont = localFont({ src: './src/Kanit-Regular.ttf' })
 
 const axios = require('axios');
 const callApi = async () => {
@@ -24,7 +24,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={myFont.className}>
 
         <Header />
 
