@@ -46,14 +46,12 @@ const Slidebar = () => {
             <div className="relative slidebar">
                 <div className="fixed" >
                 {/* px-2  pt-2.5 pb-1 */}
-                    <div className="px-2  pt-2.5 pb-1 lg:py-3 text-white transparent toggless" >  
+                    <div className="px-2  pt-2.5 pb-1 lg:py-2.5 text-white transparent toggless" >  
                     <label className="btn btn-square btn-ghost text-white">
                                 <FontAwesomeIcon icon={faBars} style={{ width: "40px", height: "40px" }} />
                             </label>
                     </div>
-                        
-
-
+                    
                     <ul className="min-h-full text-base-content grid-rows-1 bg-[#2a5b3e] flex-col " style={{ height: "100vh" }} > 
 
                         
