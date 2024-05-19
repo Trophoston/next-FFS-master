@@ -22,7 +22,7 @@ const Header = () => {
 
   const active = "border-b-4 border-gray-100 text-white flex-auto px-3 pt-1 pb-1 text-2xl ";
 
-  const nonactive = "text-gray-400 px-3 pt-1 mb-1 rounded-md hover:bg-[#1a3f2e]  hover:text-white text-2xl  ";
+  const nonactive = "text-gray-400 px-3 pt-1 mb-1 rounded-md hover:bg-[#1a3f2e]  hover:text-white text-2xl  border-b-4 border-[#1a4d2e]";
 
     // console.log(path)
 
@@ -47,6 +47,8 @@ const Header = () => {
     house = JarWheat = MoneyBillWheat = MountainSun = nonactive;
   }
   else {
+    
+    CloudSunRain=house = JarWheat = MoneyBillWheat = MountainSun = nonactive;
   }
 
 
@@ -55,7 +57,7 @@ const Header = () => {
 
   return (
     <nav className='relative'>
-      <div className="fixed py-0 navbar bg-[#1a4d2e] shadow-xl ">
+      <div className="fixed py-0  navbar bg-[#1a4d2e] shadow-lg">
         <div className="navbar-start ">
 
 

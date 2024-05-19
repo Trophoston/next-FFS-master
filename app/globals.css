@@ -5,7 +5,20 @@
 body{
     height: 200vh;
     background-color: #e8dfca;
+    animation: start 1s ease-in-out;
 }
+
+
+@keyframes start {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+    
+}
+
 nav{
     padding-bottom: 73px;
     z-index: 1000;
@@ -18,14 +31,21 @@ main{
 .slidebar{
     z-index: 1;
 }
-
-.slidetex{
-    display: none;
+.slidetex {
+    padding-left: 7px;
+    display: inline-block;
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+    white-space: nowrap; /* Prevent line breaks */
+    transition: width 0.5s ease, opacity 0.5s ease;
 }
 
-.slidetex.active{
-    display: block;
+.slidetex.active {
+    opacity: 1;
+    white-space: nowrap; /* Prevent line breaks */
 }
+
 
   
 
