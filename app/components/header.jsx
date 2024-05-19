@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation';
 import React, { useEffect } from 'react';
 import Link from 'next/link'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faMountainSun, faMoneyBillWheat, faJarWheat, faCloudSunRain, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faMountainSun, faMoneyBillWheat, faJarWheat, faCloudSunRain, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import Slidebar from './slidebar';
 
 
@@ -61,34 +61,6 @@ const Header = () => {
         <div className="navbar-start ">
 
 
-
-        <div className=" ">
-            <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
-            
-{/* 
-            <div className="drawer-side">
-                
-            <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
-                <ul className="w-100 min-h-full bg-base-200 text-base-content">
-                <li className=" text-white flex-auto px-3 pt-3 pb-14 text-2xl ">
-                <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost text-white">
-                       <FontAwesomeIcon  icon={faBars} style={{ width: "40px", height: "40px" }} /> 
-                  </label>
-                </li>
-            <li className={house}><Link href={"/"} ><FontAwesomeIcon icon={faHouse} style={{ width: "45px", height: "45px" }} /> หน้าแรก</Link></li>
-            <li className={JarWheat}><Link href={"/fertul"} ><FontAwesomeIcon icon={faJarWheat} style={{ width: "45px", height: "45px" }} /> การคำนวนปุ๋ย</Link></li>
-            <li className={MoneyBillWheat}><Link href={"/vegprice"} ><FontAwesomeIcon icon={faMoneyBillWheat} style={{ width: "45px", height: "45px" }} /> วิเคราห์ภูมิศาสตร์</Link></li>
-            <li className={MountainSun}><Link href={"/terrian"} ><FontAwesomeIcon icon={faMountainSun} style={{ width: "45px", height: "45px" }} /> วิเคราะห์สภาพอากาศ</Link></li>
-            <li className={CloudSunRain}><Link href={"/weather"} ><FontAwesomeIcon icon={faCloudSunRain} style={{ width: "45px", height: "45px" }} /> ราคาพืชผล</Link></li>
-            <li className={CloudSunRain}><Link href={"/weather"} ><FontAwesomeIcon icon={faCloudSunRain} style={{ width: "45px", height: "45px" }} /> ผลงานนักเรียน</Link></li>
-                </ul>
-
-            </div> */}
-            
-            
-          </div>
-
-
           {/* <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
@@ -113,9 +85,9 @@ const Header = () => {
           <ul className="flex gap-7 pb-0 pt-3  ">
             <li className={house}><Link href={"/"} ><FontAwesomeIcon icon={faHouse} style={{ width: "45px", height: "45px" }} /></Link></li>
             <li className={JarWheat}><Link href={"/fertul"} ><FontAwesomeIcon icon={faJarWheat} style={{ width: "45px", height: "45px" }} /></Link></li>
-            <li className={MoneyBillWheat}><Link href={"/vegprice"} ><FontAwesomeIcon icon={faMoneyBillWheat} style={{ width: "45px", height: "45px" }} /></Link></li>
             <li className={MountainSun}><Link href={"/terrian"} ><FontAwesomeIcon icon={faMountainSun} style={{ width: "45px", height: "45px" }} /></Link></li>
             <li className={CloudSunRain}><Link href={"/weather"} ><FontAwesomeIcon icon={faCloudSunRain} style={{ width: "45px", height: "45px" }} /></Link></li>
+            <li className={MoneyBillWheat}><Link href={"/vegprice"} ><FontAwesomeIcon icon={faMoneyBillWheat} style={{ width: "45px", height: "45px" }} /></Link></li>
             {/* <li>
             <details>
               <summary>Parent</summary>
@@ -128,8 +100,9 @@ const Header = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <div className="form-control">
+          <div className="form-control relative ">
             <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
+            <FontAwesomeIcon icon={faMagnifyingGlass} className='absolute end-3.5 top-3.5' />
           </div>
           <button className="btn btn-ghost btn-circle">
             <div className="indicator">

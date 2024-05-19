@@ -8,7 +8,7 @@ import { faHouse, faMountainSun, faMoneyBillWheat, faJarWheat, faCloudSunRain, f
 const Slidebar = () => {
     const path = usePathname();
     const links = "text-white text-2xl flex items-center "; // Adjusted to align items horizontally
-    const nonactive = "px-2 py-5  text-white bg-[#2a5b3e] hover:bg-[#1a3f2e] hover:text-white text-2xl flex items-center"; // Adjusted to align items horizontally
+    const nonactive = "px-3.5 py-5  text-white bg-[#2a5b3e] hover:bg-[#1a3f2e] hover:text-white text-2xl flex "; // Adjusted to align items horizontally
     let house, JarWheat, MoneyBillWheat, MountainSun, CloudSunRain;
     JarWheat = MoneyBillWheat = MountainSun = CloudSunRain = house = nonactive;
 
@@ -32,13 +32,7 @@ const Slidebar = () => {
                         slidetex.style.width = '0';
                         slidetex.style.opacity = '0'; // Fade out
                     });
-                    slidetex.addEventListener('transitionend', function handler() {
-                        if (!toggleButton.classList.contains('active')) {
-                            slidetex.style.display = 'none';
-                            slidetex.classList.remove('active');
-                        }
-                        slidetex.removeEventListener('transitionend', handler);
-                    });
+                   
                 }
             });
         };
@@ -50,7 +44,7 @@ const Slidebar = () => {
     return (
         <>
             <div className="relative slidebar">
-                <div className="fixed">
+                <div className="fixed" >
                 {/* px-2  pt-2.5 pb-1 */}
                     <div className="px-2  pt-2.5 pb-1 lg:py-3 text-white transparent toggless" >  
                     <label className="btn btn-square btn-ghost text-white">
@@ -60,20 +54,13 @@ const Slidebar = () => {
                         
 
 
-                    <ul className="min-h-full text-base-content grid-rows-1 bg-[#2a5b3e]" style={{ height: "100vh" }}>
+                    <ul className="min-h-full text-base-content grid-rows-1 bg-[#2a5b3e] flex-col " style={{ height: "100vh" }} > 
 
                         
                         <Link href={"/"} className={house}>
                             <li className={links}>
                                 <FontAwesomeIcon icon={faHouse} style={{ width: "40px", height: "40px" }} />
                                 <p className='slidetex'>หน้าแรก</p>
-                            </li>
-                        </Link>
-
-                        <Link href={"/fertul"} className={JarWheat}>
-                            <li className={links}>
-                                <FontAwesomeIcon icon={faJarWheat} style={{ width: "40px", height: "40px" }} />
-                                <p className='slidetex'>การคำนวนปุ๋ย</p>
                             </li>
                         </Link>
 
@@ -98,6 +85,13 @@ const Slidebar = () => {
                             </li>
                         </Link>
 
+                        <Link href={"/fertul"} className={JarWheat}>
+                            <li className={links}>
+                                <FontAwesomeIcon icon={faJarWheat} style={{ width: "40px", height: "40px" }} />
+                                <p className='slidetex'>การคำนวนปุ๋ย</p>
+                            </li>
+                        </Link>
+
                         <Link href={"/weaather"} className={CloudSunRain}>
                             <li className={links}>
                                 <FontAwesomeIcon icon={faGraduationCap} style={{ width: "40px", height: "40px" }} />
@@ -105,8 +99,6 @@ const Slidebar = () => {
                             </li>
                         </Link>
                         
-                        <li className='bg-[#2a5b3e]' style={{ height: "100vh" }}>
-                        </li>
                     </ul>
                 </div>
             </div>
