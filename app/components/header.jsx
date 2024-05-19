@@ -102,16 +102,26 @@ const Header = () => {
 
         <div className="navbar-end ">
 
-          <div className="form-control relative ">
-            <input type="text" placeholder="ค้นหา" className="input text-lg text-white rounded-2xl border-[#4F6F52]  bg-[#759D78] placeholder:text-white h-10 w-24 md:w-auto " />
-            <FontAwesomeIcon icon={faMagnifyingGlass} className='absolute end-3.5 top-3 text-white' />
+          <div className="dropdown dropdown-bottom dropdown-end">
+            <div className="form-control relative ">
+              <input type="text" placeholder="ค้นหา" className="input text-lg text-white rounded-2xl border-[#4F6F52]  bg-[#759D78] placeholder:text-white h-10 w-24 md:w-auto " />
+              <FontAwesomeIcon icon={faMagnifyingGlass} className='absolute end-3.5 top-3 text-white' />
+              <div></div>
+              <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                <li><a>Item 1</a></li>
+                <li><a>Item 2</a></li>
+              </ul>
+            </div>
           </div>
 
+
+
+
           <details className="dropdown dropdown-end">
-            <summary tabindex="0" role="button" className="m-1 btn btn-ghost btn-circle">
+            <summary tabindex="0" role="button" className="m-1 btn w-12 bg-transparent border-transparent hover:border-transparent  hover:bg-transparent ">
               <div className="w-10 rounded-full indicator">
                 <span className="badge badge-xs badge-error indicator-item"></span>
-                <FontAwesomeIcon icon={faBell} style={{ width: "28px", height: "28px" }} className='rounded-full text-white p-1 bg-[#759D78]' />
+                <FontAwesomeIcon icon={faBell} style={{ width: "28px", height: "28px" }} className='btn-ghost transition-all duration-200 btn-circle rounded-full text-white p-1 bg-[#759D78]' />
               </div>
             </summary>
             <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
