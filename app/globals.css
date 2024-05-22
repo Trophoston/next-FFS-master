@@ -46,6 +46,10 @@ main{
     white-space: nowrap; /* Prevent line breaks */
 }
 
+.hidescrlb::-webkit-scrollbar {
+    display: none;
+  }
+
 
   
 

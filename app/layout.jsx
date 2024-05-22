@@ -24,6 +24,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <title>cat</title>
+        <link rel="icon" href="/" sizes="any" />
+      </head>
       <body className={myFont.className}>
 
         <Header />
