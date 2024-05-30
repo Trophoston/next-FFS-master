@@ -19,8 +19,13 @@ body{
 }
 
 nav{
-    padding-bottom: 73px;
+    padding-bottom: 64px;
     z-index: 1000;
+}
+
+.banner{
+    margin-left: 75px;
+    margin-bottom: 25px;
 }
 
 main{

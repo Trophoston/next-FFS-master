@@ -125,7 +125,7 @@ const Header = () => {
 
   const user = {
     name: 'Tansyakaan',
-    icon: '/image.jpg'
+    icon: '/user.png'
   }
 
 
@@ -239,7 +239,7 @@ const Header = () => {
           <details ref={avatarDropdownRef} className="dropdown dropdown-end">
             <summary className="m-1 btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <Image src="/image.jpg" alt="Picture of the author" width={50} height={50} className="rounded-full" />
+                <Image src={user.icon}  alt="Picture of the author" width={50} height={50} className="rounded-full" />
               </div>
               <FontAwesomeIcon className='absolute end-0 bottom-0 rounded-full border-2 text-white border-[#4F6F52] bg-[#4F6F52] ' icon={faChevronDown} />
             </summary>
@@ -250,7 +250,7 @@ const Header = () => {
               <li>
                 <a href='user.php' className=" justify-start flex flex-col hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 shadow-xl">
                   <div className='flex flex-row  items-center justify-start p-0 pb-1 m-0 '>
-                    <Image src={user.icon} alt="Picture of the author" width={50} height={50} className="rounded-full pe-1 p-0" />
+                    <Image src={user.icon} alt="Picture of the author" width={50} height={50} className="rounded-full me-1.5 p-0" />
                     <p className='text-white text-xl p-0 m-0' >{user.name}</p>
                   </div>
                   <div className="divider my-1 bg-[#354537] h-px border-1 p-0 m-0"></div>

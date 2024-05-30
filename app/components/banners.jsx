@@ -11,19 +11,27 @@ const Banner = () => {
 
   const path = usePathname();
 
+  var sauce = "";
+  var classy = "block";
+
 
   if (path == "/") {
+    sauce = "/banner/main.png";
   }
   else if (path == "/fertul") {
+    sauce = "/banner/fertul.png";
   }
   else if (path == "/vegprice") {
+    sauce = "/banner/price.png";
   }
   else if (path == "/terrian") {
+    sauce = "/banner/main.png";
   }
   else if (path == "/weather") {
+    sauce = "/banner/weather.png";
   }
   else {
-    
+    classy = "hidden";
   }
 
 
@@ -32,8 +40,8 @@ const Banner = () => {
 
   return (
     <>
-      <div>
-        <Image src="/image.jpg" alt="Picture of the author" width={50} height={50} className="rounded-full" />
+      <div className='banner ' >
+        <Image src={sauce} width={1861} height={396} className={classy} />
       </div>
     </>
   )

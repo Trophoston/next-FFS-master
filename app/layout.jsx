@@ -1,9 +1,9 @@
 import localFont from 'next/font/local'
 import "./globals.css";
 import Header from './components/header'
+import Banner from './components/banners'
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import Slidebar from "./components/slidebar";
 
 const myFont = localFont({ src: './src/Kanit-Regular.ttf' })
 
@@ -31,6 +31,8 @@ export default function RootLayout({ children }) {
       <body className={myFont.className}>
 
         <Header />
+
+        <Banner />
 
 
 
