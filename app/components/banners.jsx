@@ -2,8 +2,7 @@
 import { usePathname } from 'next/navigation';
 import React, { useEffect } from 'react';
 import Link from 'next/link'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faMountainSun, faMoneyBillWheat, faJarWheat, faCloudSunRain, faBars } from "@fortawesome/free-solid-svg-icons";
+import Image from 'next/image';
 
 
 
@@ -33,6 +32,9 @@ const Banner = () => {
 
   return (
     <>
+      <div>
+        <Image src="/image.jpg" alt="Picture of the author" width={50} height={50} className="rounded-full" />
+      </div>
     </>
   )
 }

@@ -62,31 +62,33 @@ const Slidebar = () => {
                             </li>
                         </Link>
 
-                        <Link href={"/vegprice"} className={MoneyBillWheat}>
+                        <Link href={"/fertul"} className={JarWheat}>
                             <li className={links}>
-                                <FontAwesomeIcon icon={faMoneyBillWheat} style={{ width: "40px", height: "40px" }} />
-                                <p className='slidetex'>วิเคราห์ภูมิศาสตร์</p>
+                                <FontAwesomeIcon icon={faJarWheat} style={{ width: "40px", height: "40px" }} />
+                                <p className='slidetex'>การคำนวนปุ๋ย</p>
                             </li>
                         </Link>
 
                         <Link href={"/terrian"} className={MountainSun}>
                             <li className={links}>
                                 <FontAwesomeIcon icon={faMountainSun} style={{ width: "40px", height: "40px" }} />
-                                <p className='slidetex'>วิเคราะห์สภาพอากาศ</p>
+                                <p className='slidetex'>วิเคราห์ภูมิศาสตร์</p>
                             </li>
                         </Link>
 
                         <Link href={"/weather"} className={CloudSunRain}>
                             <li className={links}>
                                 <FontAwesomeIcon icon={faCloudSunRain} style={{ width: "40px", height: "40px" }} />
-                                <p className='slidetex'>ราคาพืชผล</p>
+                                <p className='slidetex'>วิเคราะห์สภาพอากาศ</p>
                             </li>
                         </Link>
 
-                        <Link href={"/fertul"} className={JarWheat}>
+                        
+
+                        <Link href={"/vegprice"} className={MoneyBillWheat}>
                             <li className={links}>
-                                <FontAwesomeIcon icon={faJarWheat} style={{ width: "40px", height: "40px" }} />
-                                <p className='slidetex'>การคำนวนปุ๋ย</p>
+                                <FontAwesomeIcon icon={faMoneyBillWheat} style={{ width: "40px", height: "40px" }} />
+                                <p className='slidetex'>ราคาพืชผล</p>
                             </li>
                         </Link>
 

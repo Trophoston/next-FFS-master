@@ -3,13 +3,31 @@ import { usePathname } from 'next/navigation';
 import React, { useRef, useEffect } from 'react';
 import Link from 'next/link'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faMountainSun, faMoneyBillWheat, faJarWheat, faCloudSunRain, faMagnifyingGlass, faBell, faNewspaper, faPlantWilt, faBagShopping, faShop } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHouse,
+  faMountainSun,
+  faMoneyBillWheat,
+  faJarWheat,
+  faCloudSunRain,
+  faMagnifyingGlass,
+  faBell,
+  faNewspaper,
+  faPlantWilt,
+  faBagShopping,
+  faShop,
+  faChevronDown,
+  faGear,
+  faChalkboardUser,
+  faQuestion,
+  faArrowRightFromBracket,
+
+} from "@fortawesome/free-solid-svg-icons";
 import Slidebar from './slidebar';
 import Image from 'next/image';
+import { icon } from '@fortawesome/fontawesome-svg-core';
 
 
 // var path = useRouter() 
-
 
 
 var house, JarWheat, MoneyBillWheat, MountainSun, CloudSunRain;
@@ -103,7 +121,11 @@ const Header = () => {
       icon: '/image.jpg'
     },
 
+  }
 
+  const user = {
+    name: 'Tansyakaan',
+    icon: '/image.jpg'
   }
 
 
@@ -133,14 +155,14 @@ const Header = () => {
           <a href='#' className=" text-xl uppercase flex gap-1 items-center" style={{ padding: " 0  0 0 60px" }}> <Image src="/logo.jpg" className='rounded-full' width={50} height={50} alt="Picture of the author" /><p className='p-0 m-0 hidden md:block'>FFS-Thailand</p> </a>
 
         </div>
-        
+
         <div className="navbar-center hidden lg:flex align-bottom ">
           <ul className="flex gap-7 pb-0 pt-3  ">
-            <li className={house}><Link href={"/"} ><FontAwesomeIcon icon={faHouse} style={{ width: "45px", height: "45px" }} /></Link></li>
-            <li className={JarWheat}><Link href={"/fertul"} ><FontAwesomeIcon icon={faJarWheat} style={{ width: "45px", height: "45px" }} /></Link></li>
-            <li className={MountainSun}><Link href={"/terrian"} ><FontAwesomeIcon icon={faMountainSun} style={{ width: "45px", height: "45px" }} /></Link></li>
-            <li className={CloudSunRain}><Link href={"/weather"} ><FontAwesomeIcon icon={faCloudSunRain} style={{ width: "45px", height: "45px" }} /></Link></li>
-            <li className={MoneyBillWheat}><Link href={"/vegprice"} ><FontAwesomeIcon icon={faMoneyBillWheat} style={{ width: "45px", height: "45px" }} /></Link></li>
+            <Link href={"/"} ><li className={house}><FontAwesomeIcon icon={faHouse} style={{ width: "45px", height: "45px" }} /></li></Link>
+            <Link href={"/fertul"} ><li className={JarWheat}><FontAwesomeIcon icon={faJarWheat} style={{ width: "45px", height: "45px" }} /></li></Link>
+            <Link href={"/terrian"} ><li className={MountainSun}><FontAwesomeIcon icon={faMountainSun} style={{ width: "45px", height: "45px" }} /></li></Link>
+            <Link href={"/weather"} ><li className={CloudSunRain}><FontAwesomeIcon icon={faCloudSunRain} style={{ width: "45px", height: "45px" }} /></li></Link>
+            <Link href={"/vegprice"} ><li className={MoneyBillWheat}><FontAwesomeIcon icon={faMoneyBillWheat} style={{ width: "45px", height: "45px" }} /></li></Link>
             {/* <li>
             <details>
               <summary>Parent</summary>
@@ -194,19 +216,19 @@ const Header = () => {
               <li className='text-xl text-center ' id='notihead' >
                 การแจ้งเตือน
               </li>
-              <div className="divider p-0 my-1 bg-white h-px"></div> 
+              <div className="divider p-0 my-1 bg-white h-px"></div>
               {Object.keys(notiapi).map(key => (
-                    <li key={key} className='p-0 flex flex-row items-center '>
-                        <img src={notiapi[key].icon} alt={`${notiapi[key].name} icon`} width={60} height={60}  className="p-0 mx-1 my-3 rounded-full"/>
-                        <p className=' sm:text-lg text-md ps-2 m-0 '><b className=''>{notiapi[key].name} </b>{notiapi[key].event}</p>
-                    </li>
-                ))}
-                
+                <li key={key} className='p-0 flex flex-row items-center '>
+                  <img src={notiapi[key].icon} alt={`${notiapi[key].name} icon`} width={60} height={60} className="p-0 mx-1 my-3 rounded-full" />
+                  <p className=' sm:text-lg text-md ps-2 m-0 '><b className=''>{notiapi[key].name} </b>{notiapi[key].event}</p>
+                </li>
+              ))}
+
               <div className="divider p-0 my-1 bg-white h-px"></div>
               <li className='text-center '>
-              สิ้นสุดการแจ้งเตือน
+                สิ้นสุดการแจ้งเตือน
                 <a href="#notihead" className=' px-1 py-0 m-1 btn btn-ghost  text-[#dddddd] '>
-                กลับสู่ด้านบน
+                  กลับสู่ด้านบน
                 </a>
               </li>
             </ul>
@@ -219,22 +241,52 @@ const Header = () => {
               <div className="w-10 rounded-full">
                 <Image src="/image.jpg" alt="Picture of the author" width={50} height={50} className="rounded-full" />
               </div>
+              <FontAwesomeIcon className='absolute end-0 bottom-0 rounded-full border-2 text-white border-[#4F6F52] bg-[#4F6F52] ' icon={faChevronDown} />
             </summary>
             <ul
               tabIndex={0}
-              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+              className="mt-3 z-[1] p-2  shadow  menu-sm dropdown-content rounded-box w-64 bg-[#4F6F52] "
             >
               <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
+                <a href='user.php' className=" justify-start flex flex-col hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 shadow-xl">
+                  <div className='flex flex-row  items-center justify-start p-0 pb-1 m-0 '>
+                    <Image src={user.icon} alt="Picture of the author" width={50} height={50} className="rounded-full pe-1 p-0" />
+                    <p className='text-white text-xl p-0 m-0' >{user.name}</p>
+                  </div>
+                  <div className="divider my-1 bg-[#354537] h-px border-1 p-0 m-0"></div>
                 </a>
               </li>
-              <li><a>Settings</a></li>
-              <li><a>Logout</a></li>
+
+              <li>
+                <a href='goorle.com' className=" justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 ">
+                  <FontAwesomeIcon icon={faGear} className='text-white rounded-full p-2 bg-[#1A4D2E]' style={{ width: "25px", height: "25px" }} />
+                  <p className='p-0 px-2 m-0 text-lg text-white content-center '>การแจ้งเตือน</p>
+                </a>
+              </li>
+
+              <li>
+                <a href='goorle.com' className=" justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 ">
+                  <FontAwesomeIcon icon={faChalkboardUser} className='text-white rounded-full p-2 bg-[#1A4D2E]' style={{ width: "25px", height: "25px" }} />
+                  <p className='p-0 px-2 m-0 text-lg text-white content-center '>ให้ความรู้</p>
+                </a>
+              </li>
+
+              <li>
+                <a href='goorle.com' className=" justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 ">
+                  <FontAwesomeIcon icon={faQuestion} className='text-white rounded-full p-2 bg-[#1A4D2E]' style={{ width: "25px", height: "25px" }} />
+                  <p className='p-0 px-2 m-0 text-lg text-white content-center '>ความช่วยเหลือ</p>
+                </a>
+              </li>
+
+              <li>
+                <a href='goorle.com' className=" justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 ">
+                  <FontAwesomeIcon icon={faArrowRightFromBracket} className='text-white rounded-full p-2 bg-[#1A4D2E]' style={{ width: "25px", height: "25px" }} />
+                  <p className='p-0 px-2 m-0 text-lg text-white content-center '>ออกจากระบบ</p>
+                </a>
+              </li>
+
             </ul>
           </details>
-
 
         </div>
       </div>
