@@ -24,11 +24,48 @@ export default function Fertul() {
     set_kg_value(0);
     set_kr_value(0);
     set_gt_value(0);
+
+    
   }
 
   const [n_m_value, set_n_m_value] = useState('46-0-0');
   const [po_m_value, set_po_m_value] = useState('18-46-0');
   const [ko_m_value, set_ko_m_value] = useState('0-0-60');
+
+
+  function mompuical(momtype,suite_n,suite_p,suite_k,mass) {
+
+    var n=0,p=0,k=0,n2=0;
+
+    if(momtype == '46-0-0') {
+      n = 46;
+    }
+    else if(momtype == '21-0-0') {
+      n = 21;
+    }
+    else if(momtype == '0-46-0') {
+      p = 46;
+    }
+    else if(momtype == '0-20-0') {
+      p = 20;
+    }
+    else if(momtype == '0-0-60') {
+      k = 60;
+    }
+    else if(momtype == '0-0-50') {
+      k = 50;
+    }
+    else if(momtype == '18-46-0') {
+      p = 46;
+      n2 = 18;
+    }
+
+    mop = (n * mass) / 100;
+
+  }
+
+
+  
 
   const calculateFertful = () => { 
 
@@ -38,8 +75,15 @@ export default function Fertul() {
     const kg_cal = parseInt(kg_value, 10);
     const kr_cal = parseInt(kr_value, 10);
     const gt_cal = parseInt(gt_value, 10);
+ 
 
-    setOut("N: " + n_cal + " P: " + po_cal + " K: " + ko_cal + " Kg: " + kg_cal + " Kr: " + kr_cal + " Gt: " + gt_cal + " N: " + n_m_value + " P: " + po_m_value + " K: " + ko_m_value)
+
+    const filler = momtype();
+
+
+
+    setOut(filler + " กรัม");
+    // setOut("N: " + n_cal + " P: " + po_cal + " K: " + ko_cal + " Kg: " + kg_cal + " Kr: " + kr_cal + " Gt: " + gt_cal + " N: " + n_m_value + " P: " + po_m_value + " K: " + ko_m_value)
 
     console.log(
       "N: ", n_cal, 
@@ -183,3 +227,4 @@ export default function Fertul() {
     </>
   );
 }
+
