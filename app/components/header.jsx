@@ -152,7 +152,7 @@ const Header = () => {
             </li>
           </ul>
         </div> */}
-          <a href='#' className=" text-xl uppercase flex gap-1 items-center" style={{ padding: " 0  0 0 60px" }}> <Image src="/logo.jpg" className='rounded-full' width={50} height={50} alt="Picture of the author" /><p className='p-0 m-0 hidden md:block text-white'>FFS-Thailand</p> </a>
+          <a href='#' className=" text-xl tracking-wide uppercase flex gap-1 items-center" style={{ padding: " 0  0 0 60px" }}> <Image src="/logo.jpg" draggable="false" className='rounded-full' width={50} height={50} alt="Picture of the author" /><p className='p-0 m-0 hidden md:block text-white'>FFS-Thailand</p> </a>
 
         </div>
 
@@ -219,7 +219,7 @@ const Header = () => {
               <div className="divider p-0 my-1 bg-white h-px"></div>
               {Object.keys(notiapi).map(key => (
                 <li key={key} className='p-0 flex flex-row items-center '>
-                  <img src={notiapi[key].icon} alt={`${notiapi[key].name} icon`} width={60} height={60} className="p-0 mx-1 my-3 rounded-full" />
+                  <img src={notiapi[key].icon} draggable="false" alt={`${notiapi[key].name} icon`} width={60} height={60} className="p-0 mx-1 my-3 rounded-full" />
                   <p className=' sm:text-lg text-md ps-2 m-0 '><b className=''>{notiapi[key].name} </b>{notiapi[key].event}</p>
                 </li>
               ))}
@@ -239,7 +239,7 @@ const Header = () => {
           <details ref={avatarDropdownRef} className="dropdown dropdown-end">
             <summary className="m-1 btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <Image src={user.icon}  alt="Picture of the author" width={50} height={50} className="rounded-full" />
+                <Image src={user.icon}  draggable="false" alt="Picture of the author" width={50} height={50} className="rounded-full" />
               </div>
               <FontAwesomeIcon className='absolute end-0 bottom-0 rounded-full border-2 text-white border-[#4F6F52] bg-[#4F6F52] ' icon={faChevronDown} />
             </summary>
@@ -250,7 +250,7 @@ const Header = () => {
               <li>
                 <a href='user.php' className=" justify-start flex flex-col hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 shadow-xl">
                   <div className='flex flex-row  items-center justify-start p-0 pb-1 m-0 '>
-                    <Image src={user.icon} alt="Picture of the author" width={50} height={50} className="rounded-full me-1.5 p-0" />
+                    <Image src={user.icon} draggable="false" alt="Picture of the author" width={50} height={50} className="rounded-full me-1.5 p-0" />
                     <p className='text-white text-xl p-0 m-0' >{user.name}</p>
                   </div>
                   <div className="divider my-1 bg-[#354537] h-px border-1 p-0 m-0"></div>
