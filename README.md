@@ -34,3 +34,25 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+```bash
+p11001-p11050 = raw(pork beef chicken) egg(duck chicken)
+p12001-p12024 = shrimp fish noodle
+p13001-p13092 = veg #better choice
+p14001-p14046 = fruit
+p15001-p15048 = veg(garlic)
+p16001-p16028 = nut nutoli coconut coconutoil
+
+r11001-r11059 = rice #better choice
+r12001-r12010 = rice(same as r13) #better choice
+r13001-r13010 = rice(same as r12)
+
+w11001-w11062 = life and raw(pork beef chicken) egg(duck chicken)
+w12001-w12021 = shrimp fish squid #better choice
+w13001-w13031 = veg
+w14001-w14036 = fruit
+w15001-w15050 = veg(garlic) #better choice
+w16001-w16044 = transfer
+w17001-w17015 = transfer
+w18001-w18106 = palm palmoil
+```
