@@ -61,41 +61,41 @@ export default function VegPrice() {
   const api_pak = [
     "P13001",
     "P13002",
-    // "P13003",
-    // "P13004",
-    // "P13005",
-    // "P13006",
-    // "P13007",
-    // "P13008",
-    // "P13009",
-    // "P13010",
-    // "P13011",
-    // "P13012",
-    // "P13013",
-    // "P13014",
-    // "P13015",
-    // "P13016",
-    // "P13017",
-    // "P13018",
-    // "P13019",
-    // "P13020",
-    // "P13021",
-    // "P13022",
-    // "P13023",
-    // "P13024",
-    // "P13025",
-    // "P13026",
-    // "P13027",
-    // "P13028",
-    // "P13029",
-    // "P13030",
-    // "P13031",
-    // "P13032",
+    "P13003",
+    "P13004",
+    "P13005",
+    "P13006",
+    "P13007",
+    "P13008",
+    "P13009",
+    "P13010",
+    "P13011",
+    "P13012",
+    "P13013",
+    "P13014",
+    "P13015",
+    "P13016",
+    "P13017",
+    "P13018",
+    "P13019",
+    "P13020",
+    "P13021",
+    "P13022",
+    "P13023",
+    "P13024",
+    "P13025",
+    "P13026",
+    "P13027",
+    "P13028",
+    "P13029",
+    "P13030",
+    "P13031",
+    "P13032",
   ];
 
-  for (let i = 0; i < 32; i++) {
-    api_pak.push("P130" + (i + 33).toString().padStart(2, "0"));
-  }
+  // for (let i = 0; i < 32; i++) {
+  //   api_pak.push("P130" + (i + 33).toString().padStart(2, "0"));
+  // }
 
   const api_fruit = [
     "P14001",
@@ -105,50 +105,70 @@ export default function VegPrice() {
 
   var api_url = "";
 
-  if (date == 0) {
-    api_url = `&from_date=${year}-${month}-${day - 2}&to_date=${year}-${month}-${day - 2}`;
-  } else if (date == 6) {
-    api_url = `&from_date=${year}-${month}-${day - 1}&to_date=${year}-${month}-${day - 1}`;
+  if (date == 0) {//avoid holiday
+    api_url = `&from_date=${year}-${month}-${day - 3}&to_date=${year}-${month}-${day - 2}`;
+  } 
+  else if (date == 6) {
+    api_url = `&from_date=${year}-${month}-${day - 2}&to_date=${year}-${month}-${day - 1}`;
   }
   else {
-    api_url = `&from_date=${year}-${month}-${day}&to_date=${year}-${month}-${day}`;
+    api_url = `&from_date=${year}-${month}-${day-1}&to_date=${year}-${month}-${day}`;
   }
 
-  useEffect(() => {
-    async function getVegData() {
-      try {
+  useEffect(() => {//fetch data
+
+      async function fetchData() {
         setProgress(0); // Initialize progress
         const totalRequests = api_pak.length;
         let completedRequests = 0;
+  
+        try {
+          const responses = await Promise.all(api_pak.map(async id => {
+            const response = await fetch("https://dataapi.moc.go.th/gis-product-prices?product_id=" + id + api_url);
+            console.log("debug uel api : https://dataapi.moc.go.th/gis-product-prices?product_id=" + id + api_url)
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            completedRequests += 1;
+            setProgress(Math.floor((completedRequests / totalRequests) * 100)); // Update progress
+            return data;
+          }));
 
-        const responses = await Promise.all(api_pak.map(async id => {
-          const response = await axios.get("https://dataapi.moc.go.th/gis-product-prices?product_id=" + id + api_url);
-          completedRequests += 1;
-          setProgress(Math.floor((completedRequests / totalRequests) * 100)); // Update progress
-          return response;
-        }));
-
-        const data = responses.map(response => ({
-          id: response.data.product_id,
-          name: response.data.product_name,
-          price: response.data.price_list[2].price_list,
-          gtag: response.data.group_name,
-          unit: response.data.unit,
-        }));
-
-        setVegData(data);
-        setLoading(false);
-        setProgress(100); // Set progress to 100% after loading is complete
-      } catch (err) {
-        setError(err);
-        setLoading(false);
+          function findColor(p, past_p) {
+            if (p > past_p) {
+              return "text-green-700 hp alc";
+            } else if (p < past_p) {
+              return "text-red-700 hp alc";
+            } else {
+              return "text-sky-400 hp alc";
+            }
+          }
+  
+          const data = responses.map(response => ({
+            id: response.product_id,
+            name: response.product_name,
+            price: response.price_list[0].price_max,
+            past_price: response.price_list[1]?.price_max,
+            gtag: response.group_name,
+            unit: response.unit,
+            color: findColor(response.price_list[0].price_max, response.price_list[1]?.price_max)
+          }));
+          
+  
+          setVegData(data);
+          setLoading(false);
+          setProgress(100); // Set progress to 100% after loading is complete
+        } catch (error) {
+          setError(error);
+          setLoading(false);
+        }
       }
-    }
+  
+      fetchData();
+    }, [api_url]);
 
-    getVegData();
-  }, []);
-
-  if (loading) {
+  if (loading) {//loading page
     return (
       <div className='flex flex-col justify-center items-center '>
         <p className='text-center text-4xl pb-14 text-[#2A5B3E] font-extrabold drop-shadow-lg'>กำลังโหลดข้อมูล</p>
@@ -158,12 +178,11 @@ export default function VegPrice() {
       </div>
     );
   }
-
   if (error) {
     return <p>Error: {error.message}</p>;
   }
 
-  const displayedData = showAll ? vegData : vegData.slice(0, 5);
+  const displayedData = showAll ? vegData : vegData.slice(0, 10);//read more
 
   return (
     <div className='lg:ms-60 lg:me-14'>
@@ -188,24 +207,25 @@ export default function VegPrice() {
         </div>
       </div>
       <p className='text-4xl my-5 text-[#2A5B3E] font-extrabold drop-shadow-lg'>ผลไม้</p>
+
       <div className="bg-white rounded-xl p-2">
         
         <table className="table text-xs sm:text-lg table-fixed text-[#2A5B3E]">
-          <thead className='text-xs sm:text-lg text-[#2A5B3E] border-b-4 border-[#759D78]'>
+          <thead className='text-xs sm:text-lg text-[#2A5B3E] border-b-4 border-[#759D78] '>
             <tr>
-              <th className='hp'>รายชื่อสินค้า</th>
-              <th className='hp'>ราคาปัจจุบัน</th>
-              <th className='hp'>ความเปลี่ยนแปลง</th>
-              <th className='hp'>หมวดหมู่</th>
+              <th className='hp alc'>รายชื่อสินค้า</th>
+              <th className='hp alc'>ราคาปัจจุบัน</th>
+              <th className='hp alc'>ความเปลี่ยนแปลง</th>
+              <th className='hp ale'>หมวดหมู่</th>
             </tr>
           </thead>
           <tbody>
             {displayedData.map(item => (
               <tr key={item.id} className='hover:bg-gray-200'>
-                <td className='hp'>{item.name}</td>
-                <td className='hp text-[#bb0000]'>{item.price}{item.unit}</td>
-                <td className='hp text-[#00bb00]'>+{Math.floor(Math.random() * 10) + 1}{item.unit}</td>
-                <td>{item.gtag}</td>
+                <td className='hp alc'>{item.name}</td>
+                <td className='hp alc'>{item.price}{item.unit}</td>
+                <td className={item.color}>{item.past_price-item.price}{item.unit}</td>
+                <td className='hp alc'>{item.gtag}</td>
               </tr>
             ))}
           </tbody>

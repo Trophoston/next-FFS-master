@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body{
-    height: 250vh;
+    min-height: 100vh;
     background-color: #e8dfca;
     animation: start 1s ease-in-out;
 }
@@ -57,14 +57,31 @@ main{
 
 .hp{
     padding: 15px;
+    
 }
+
+.alc{
+    text-align: center;
+}
+
+.ale{
+    text-align: center;
+}
+
 
 @media screen and (max-width: 600px) {
     .hp{
         padding: 3.5px;
     }
-    
 }
+
+@media screen and (max-width: 400px) {
+    .ale{
+        text-align: end;
+    }
+}
+
+
 /* tailwind.css or custom CSS file */
 @layer utilities {
     .scrollbar-thin {
@@ -96,6 +113,10 @@ main{
 
 .transithon{
     transition: 1s all;
+}
+
+.weth{
+    height: 90vh;
 }
 
   
