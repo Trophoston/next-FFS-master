@@ -40,7 +40,7 @@ const Banner = () => {
 
   return (
     <>
-      <div className='banner ' >
+      <div className='banner'>
         <Image draggable="false" src={sauce} width={1861} height={396} className={classy} />
       </div>
     </>

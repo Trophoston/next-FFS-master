@@ -248,7 +248,7 @@ const Header = () => {
               className="mt-3 z-[1] p-2  shadow  menu-sm dropdown-content rounded-box w-64 bg-[#4F6F52] "
             >
               <li>
-                <a href='user.php' className=" justify-start flex flex-col hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 shadow-xl">
+                <a href='/login' className=" justify-start flex flex-col hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 shadow-xl">
                   <div className='flex flex-row  items-center justify-start p-0 pb-1 m-0 '>
                     <Image src={user.icon} draggable="false" alt="Picture of the author" width={50} height={50} className="rounded-full me-1.5 p-0" />
                     <p className='text-white text-xl p-0 m-0' >{user.name}</p>
