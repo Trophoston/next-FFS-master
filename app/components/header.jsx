@@ -260,12 +260,12 @@ const Header = () => {
               <li>
                 <a href='goorle.com' className=" justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 ">
                   <FontAwesomeIcon icon={faGear} className='text-white rounded-full p-2 bg-[#1A4D2E]' style={{ width: "25px", height: "25px" }} />
-                  <p className='p-0 px-2 m-0 text-lg text-white content-center '>การแจ้งเตือน</p>
+                  <p className='p-0 px-2 m-0 text-lg text-white content-center '>การตั้งค่า</p>
                 </a>
               </li>
 
               <li>
-                <a href='goorle.com' className=" justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 ">
+                <a href='/kwamru' className=" justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 ">
                   <FontAwesomeIcon icon={faChalkboardUser} className='text-white rounded-full p-2 bg-[#1A4D2E]' style={{ width: "25px", height: "25px" }} />
                   <p className='p-0 px-2 m-0 text-lg text-white content-center '>ให้ความรู้</p>
                 </a>
