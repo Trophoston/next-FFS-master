@@ -14,6 +14,11 @@ export default function Kwamru() {
           <div className="relative">
           <iframe className="inline-block" width="560" height="315" src="https://www.youtube.com/embed/Mb2sTps1OEs?si=LmNLnEqorfxR0K3q&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
+          {/* 
+          https://page.line.me/707avpuv
+          https://www.youtube.com/watch?v=Mb2sTps1OEs
+          https://play.google.com/store/apps/details?id=com.ldd.appeservice&hl=th&pli=1 
+          */}
         </div>
 
         
