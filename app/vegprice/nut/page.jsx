@@ -2,12 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { setapiid } from './layout.jsx';
+import { setapiid } from '../layout.jsx';
 
 
 export default function VegPrice() {
 
-  const {price_veg } = setapiid();
+  const {price_nut } = setapiid();
 
   const [vegData, setVegData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,7 +25,7 @@ export default function VegPrice() {
   
   //   console.log(api_pak);
 
-  const api_pak = price_veg;
+  const api_pak = price_nut;
 
 
   var api_url = "";
@@ -135,7 +135,7 @@ export default function VegPrice() {
 
   return (
     <div >
-      <p className='text-4xl my-5 text-[#2A5B3E] font-extrabold drop-shadow-lg'>ผลไม้</p>
+      <p className='text-4xl my-5 text-[#2A5B3E] font-extrabold drop-shadow-lg'>พืชน้ำมันและน้ำมันพืช</p>
 
       <div className="bg-white rounded-xl p-2">
 

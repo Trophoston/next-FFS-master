@@ -23,6 +23,9 @@ const Banner = () => {
   }
   else if (path == "/vegprice") {
     sauce = "/banner/price.png";
+  } 
+  else if (path.startsWith("/vegprice/")) { // Handles any subpage under /vegprice
+    sauce = "/banner/price.png";
   }
   else if (path == "/terrian") {
     sauce = "/banner/main.png";
@@ -35,6 +38,7 @@ const Banner = () => {
   }
   else {
     classy = "hidden";
+    sauce = "";
   }
 
 

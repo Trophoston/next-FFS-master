@@ -6,8 +6,8 @@ import Header from '../components/header'
 export default function Register() {
 
   return (
-   <div className="mt-[-154px] ">
-    <div className="flex items-center justify-center h-dvh" >
+   <div className="">
+    <div className="flex items-center justify-center mt-24" >
       <form action="" className="bg-[#4f6f52] p-4 rounded-xl w-full sm:w-[400px] flex flex-col items-center justify-center gap-2 shadow-xl" >
         <p className="text-center  text-white text-[45px] p-0 mb-2 ">สมัครสมาชิก</p>
         <div className="flex flex-col ">
