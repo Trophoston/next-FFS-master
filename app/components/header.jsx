@@ -57,6 +57,11 @@ const Header = () => {
     MoneyBillWheat = active;
     house = JarWheat = MountainSun = CloudSunRain = nonactive;
   }
+  else if (path.startsWith("/vegprice/")) {
+    MoneyBillWheat = active;
+    house = JarWheat = MountainSun = CloudSunRain = nonactive;
+  }
+
   else if (path == "/terrian") {
     MountainSun = active;
     house = JarWheat = MoneyBillWheat = CloudSunRain = nonactive;

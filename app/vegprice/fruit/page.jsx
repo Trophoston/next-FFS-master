@@ -133,6 +133,8 @@ export default function VegPrice() {
 
   const displayedData = showAll ? vegData : vegData.slice(0, 10);//read more
 
+  var count_id = 0;
+
   return (
     <div>
       <p className='text-4xl my-5 text-[#2A5B3E] font-extrabold drop-shadow-lg'>ผลไม้</p>
@@ -142,6 +144,7 @@ export default function VegPrice() {
         <table className="table text-xs sm:text-lg table-fixed text-[#2A5B3E]">
           <thead className='text-xs sm:text-lg text-[#2A5B3E] border-b-4 border-[#759D78] '>
             <tr>
+              <th className='hp alc w-8 sm:w-20'>ลำดับ</th>
               <th className='hp alc'>รายชื่อสินค้า</th>
               <th className='hp alc'>ราคาปัจจุบัน</th>
               <th className='hp alc'>ความเปลี่ยนแปลง</th>
@@ -154,9 +157,10 @@ export default function VegPrice() {
               .map(item => {
                 // Calculate and round the difference to 2 decimal places
                 const priceDifference = ((item.past_price - item.price).toFixed(2));
-
+                count_id ++;
                 return (
                   <tr key={item.id} className='hover:bg-gray-200'>
+                    <td className='hp alc'>{count_id}</td>
                     <td className='hp alc'>{item.name}</td>
                     <td className='hp alc'>{item.price} {item.unit}</td>
                     <td className={item.color}>{priceDifference} {item.unit}</td>
