@@ -22,6 +22,9 @@ export function setapiid() {
   for (let i = 16001; i <= 16028; i++) {
     price_nut.push(`p${i}`);
   }
+  for (let i = 18001; i <= 18106; i++) {
+    price_nut.push(`w${i}`);
+  }
 
   const price_rice = [];
   for (let i = 11001; i <= 11059; i++) {
@@ -54,10 +57,7 @@ export function setapiid() {
     price_transfer.push(`w${i}`);
   }
 
-  const price_palm = [];
-  for (let i = 18001; i <= 18106; i++) {
-    price_palm.push(`w${i}`);
-  }
+  
 
   return {
     price_veg,
@@ -68,7 +68,6 @@ export function setapiid() {
     price_sea,
     price_garlic,
     price_transfer,
-    price_palm,
   };
 }
 
@@ -91,23 +90,18 @@ export default function RootLayout({ children }) {
       url: "/vegprice/nut",
       img: "/flower.jpg",
     },
-    สินค้าสด: {
-      name: "สินค้าสด",
-      url: "https://dataapi.moc.go.th/gis-product-prices?product_id=P13002&from_date=2018-01-01&to_date=2018-01-05",
-      img: "/meat.jpg",
-    },
-    ปลาและอาหารทะเล: {
-      name: "ปลาและอาหารทะเล",
-      url: "https://dataapi.moc.go.th/gis-product-prices?product_id=P13003&from_date=2018-01-01&to_date=2018-01-05",
-      img: "/fish.jpg",
-    },
     ข้าว: {
       name: "ข้าว",
       url: "https://dataapi.moc.go.th/gis-product-prices?product_id=P13005&from_date=2018-01-01&to_date=2018-01-05",
       img: "/rice.jpg",
     },
+    สินค้าสด: {
+      name: "สินค้าสด",
+      url: "https://dataapi.moc.go.th/gis-product-prices?product_id=P13002&from_date=2018-01-01&to_date=2018-01-05",
+      img: "/meat.jpg",
+    },
     อาหารแห้ง: {
-      name: "อาหารแห้ง",
+      name: "เครื่องเทศ",
       url: "https://dataapi.moc.go.th/gis-product-prices?product_id=P13007&from_date=2018-01-01&to_date=2018-01-05",
       img: "/spice.jpg",
     },
@@ -115,6 +109,11 @@ export default function RootLayout({ children }) {
       name: "ผลิตภัณฑ์แปรรูป",
       url: "https://dataapi.moc.go.th/gis-product-prices?product_id=P13008&from_date=2018-01-01&to_date=2018-01-05",
       img: "/tranform.png",
+    },
+    ผลิตภัณฑ์แปรรูป: {
+      name: "สินค้านำเข้า",
+      url: "https://dataapi.moc.go.th/gis-product-prices?product_id=P13008&from_date=2018-01-01&to_date=2018-01-05",
+      img: "/tranform.webp",
     },
   };
 
@@ -143,6 +142,7 @@ export default function RootLayout({ children }) {
       <div className='mt-20'>
         {children}
       </div>
+      <p className=''>*ระบบนี้จะไม่ทำงานในวันหยุดและหลังนักขัตฤกษ์1วัน หากพบเจอปัญหาหรือมีข้อสงสัยโปรดแจ้ง</p>
     </div>
   );
 }

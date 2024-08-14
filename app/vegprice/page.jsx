@@ -91,9 +91,9 @@ export default function VegPrice() {
             id: response.product_id,
             name: response.product_name,
             price: currentPrice,
-            past_price: pastPrice,
-            gtag: response.group_name,
-            unit: response.unit,
+            past_price: pastPrice ,
+            gtag: response.group_name ,
+            unit: response.unit || "หน่วย",
             color: findColor(currentPrice, pastPrice),
           };
         });
@@ -132,6 +132,8 @@ export default function VegPrice() {
   // }
 
   const displayedData = showAll ? vegData : vegData.slice(0, 10);//read more
+
+  var count_id = 0;
 
   return (
     <div>
