@@ -92,36 +92,36 @@ export default function RootLayout({ children }) {
     },
     ข้าว: {
       name: "ข้าว",
-      url: "https://dataapi.moc.go.th/gis-product-prices?product_id=P13005&from_date=2018-01-01&to_date=2018-01-05",
+      url: "/vegprice/rice",
       img: "/rice.jpg",
     },
     สินค้าสด: {
       name: "สินค้าสด",
-      url: "https://dataapi.moc.go.th/gis-product-prices?product_id=P13002&from_date=2018-01-01&to_date=2018-01-05",
+      url: "/vegprice/raw",
       img: "/meat.jpg",
     },
     อาหารแห้ง: {
-      name: "เครื่องเทศ",
-      url: "https://dataapi.moc.go.th/gis-product-prices?product_id=P13007&from_date=2018-01-01&to_date=2018-01-05",
+      name: "พืชอาหาร",
+      url: "/vegprice/garlic",
       img: "/spice.jpg",
     },
-    ผลิตภัณฑ์แปรรูป: {
-      name: "ผลิตภัณฑ์แปรรูป",
-      url: "https://dataapi.moc.go.th/gis-product-prices?product_id=P13008&from_date=2018-01-01&to_date=2018-01-05",
-      img: "/tranform.png",
+    ทะเล: {
+      name: "สินค้าทะเล",
+      url: "/vegprice/sea",
+      img: "/fish.jpg",
     },
     ผลิตภัณฑ์แปรรูป: {
       name: "สินค้านำเข้า",
-      url: "https://dataapi.moc.go.th/gis-product-prices?product_id=P13008&from_date=2018-01-01&to_date=2018-01-05",
+      url: "/vegprice/transform",
       img: "/tranform.webp",
     },
   };
 
   return (
     <div className='lg:ms-60 lg:me-14'>
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center mb-14'>
         <p className='text-center text-6xl text-[#2A5B3E] font-extrabold drop-shadow-lg'>ราคาสินค้ารายวัน</p>
-        <input type="text" placeholder="ค้นหารายการสินค้า" className="input text-xl text-black rounded-lg border-gray bg-white placeholder:text-gray h-11 w-auto m-9 sm:w-2/3" />
+        {/* <input type="text" placeholder="ค้นหารายการสินค้า" className="input text-xl text-black rounded-lg border-gray bg-white placeholder:text-gray h-11 w-auto m-9 sm:w-2/3" /> */}
       </div>
 
       <div>
@@ -142,7 +142,7 @@ export default function RootLayout({ children }) {
       <div className='mt-20'>
         {children}
       </div>
-      <p className=''>*ระบบนี้จะไม่ทำงานในวันหยุดและหลังนักขัตฤกษ์1วัน หากพบเจอปัญหาหรือมีข้อสงสัยโปรดแจ้ง</p>
+      <p className="mt-8">*ระบบนี้จะไม่ทำงานในวันหยุดและหลังวันหยุดนักขัตฤกษ์1วัน หากพบเจอปัญหาหรือมีข้อสงสัยโปรดแจ้ง</p>
     </div>
   );
 }

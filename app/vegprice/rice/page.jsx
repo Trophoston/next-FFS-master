@@ -2,12 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { setapiid } from './layout.jsx';
+import { setapiid } from '../layout.jsx';
 
 
 export default function VegPrice() {
 
-  const {price_veg } = setapiid();
+  const {price_rice } = setapiid();
 
   const [vegData, setVegData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,7 +25,7 @@ export default function VegPrice() {
   
   //   console.log(api_pak);
 
-  const api_pak = price_veg;
+  const api_pak = price_rice;
 
 
   var api_url = "";
@@ -91,8 +91,8 @@ export default function VegPrice() {
             id: response.product_id,
             name: response.product_name,
             price: currentPrice,
-            past_price: pastPrice ,
-            gtag: response.group_name ,
+            past_price: pastPrice,
+            gtag: response.group_name,
             unit: response.unit || "บาท/หน่วย",
             color: findColor(currentPrice, pastPrice),
           };
@@ -137,47 +137,47 @@ export default function VegPrice() {
 
   return (
     <div>
-    <p className='text-4xl my-5 text-[#2A5B3E] font-extrabold drop-shadow-lg'>พืชน้ำมันและน้ำมันพืช</p>
+      <p className='text-4xl my-5 text-[#2A5B3E] font-extrabold drop-shadow-lg'>ข้าว</p>
 
-    <div className="bg-white rounded-xl p-2">
+      <div className="bg-white rounded-xl p-2">
 
-      <table className="table text-xs sm:text-lg table-fixed text-[#2A5B3E]">
-        <thead className='text-xs sm:text-lg text-[#2A5B3E] border-b-4 border-[#759D78] '>
-          <tr>
-            <th className='hp alc w-8 sm:w-20'>ลำดับ</th>
-            <th className='hp alc'>รายชื่อสินค้า</th>
-            <th className='hp alc'>ราคาปัจจุบัน</th>
-            <th className='hp alc'>ความเปลี่ยนแปลง</th>
-            <th className='hp ale'>หมวดหมู่</th>
-          </tr>
-        </thead>
-        <tbody>
-          {displayedData
-            .filter(item => item && item.id) // Filter out items that are null or do not have an id
-            .map(item => {
-              // Calculate and round the difference to 2 decimal places
-              const priceDifference = ((item.past_price - item.price).toFixed(2));
-              count_id ++;
-              return (
-                <tr key={item.id} className='hover:bg-gray-200'>
-                  <td className='hp alc'>{count_id}</td>
-                  <td className='hp alc'>{item.name}</td>
-                  <td className='hp alc'>{item.price} {item.unit}</td>
-                  <td className={item.color}>{priceDifference} {item.unit}</td>
-                  <td className='hp alc'>{item.gtag}</td>
-                </tr>
-              );
-            })}
-        </tbody>
+        <table className="table text-xs sm:text-lg table-fixed text-[#2A5B3E]">
+          <thead className='text-xs sm:text-lg text-[#2A5B3E] border-b-4 border-[#759D78] '>
+            <tr>
+              <th className='hp alc w-8 sm:w-20'>ลำดับ</th>
+              <th className='hp alc'>รายชื่อสินค้า</th>
+              <th className='hp alc'>ราคาปัจจุบัน</th>
+              <th className='hp alc'>ความเปลี่ยนแปลง</th>
+              <th className='hp ale'>หมวดหมู่</th>
+            </tr>
+          </thead>
+          <tbody>
+            {displayedData
+              .filter(item => item && item.id) // Filter out items that are null or do not have an id
+              .map(item => {
+                // Calculate and round the difference to 2 decimal places
+                const priceDifference = ((item.past_price - item.price).toFixed(2));
+                count_id ++;
+                return (
+                  <tr key={item.id} className='hover:bg-gray-200'>
+                    <td className='hp alc'>{count_id}</td>
+                    <td className='hp alc'>{item.name}</td>
+                    <td className='hp alc'>{item.price} {item.unit}</td>
+                    <td className={item.color}>{priceDifference} {item.unit}</td>
+                    <td className='hp alc'>{item.gtag}</td>
+                  </tr>
+                );
+              })}
+          </tbody>
 
 
-      </table>
-      <div onClick={() => setShowAll(!showAll)}
-        className="text-center font-normal text-lg border-transparent hover:border-transparent bg-[#759D78] text-white rounded px-4 py-2 hover:bg-[#2A5B3E]">
-        {showAll ? "แสดงน้อยลง" : "แสดงเพิ่มเติม"}
+        </table>
+        <div onClick={() => setShowAll(!showAll)}
+          className="text-center font-normal text-lg border-transparent hover:border-transparent bg-[#759D78] text-white rounded px-4 py-2 hover:bg-[#2A5B3E]">
+          {showAll ? "แสดงน้อยลง" : "แสดงเพิ่มเติม"}
+        </div>
+
       </div>
-
     </div>
-  </div>
   );
 }

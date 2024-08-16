@@ -92,7 +92,7 @@ const Slidebar = () => {
                             </li>
                         </Link>
 
-                        <Link href={"/weaather"} className={CloudSunRain}>
+                        <Link href={"/student_reward"} className={CloudSunRain}>
                             <li className={links}>
                                 <FontAwesomeIcon icon={faGraduationCap} style={{ width: "40px", height: "40px" }} />
                                 <p className='slidetex'>ผลงานนักเรียน</p>

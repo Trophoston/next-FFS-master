@@ -36,6 +36,9 @@ const Banner = () => {
   else if (path == "/kwamru"){
     sauce = "/banner/main.png";
   }
+  else if (path == "/student_reward"){
+    sauce = "/banner/main.png";
+  }
   else {
     classy = "hidden";
     sauce = "";

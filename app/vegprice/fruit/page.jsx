@@ -93,7 +93,7 @@ export default function VegPrice() {
             price: currentPrice,
             past_price: pastPrice,
             gtag: response.group_name,
-            unit: response.unit,
+            unit: response.unit || "บาท/หน่วย",
             color: findColor(currentPrice, pastPrice),
           };
         });

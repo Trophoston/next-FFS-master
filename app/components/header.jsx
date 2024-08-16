@@ -35,7 +35,7 @@ var house, JarWheat, MoneyBillWheat, MountainSun, CloudSunRain;
 
 const Header = () => {
 
-
+  const api_sherch = "https://us-central1-ffs-thailand.cloudfunctions.net/api/search-student-reward/%E0%B8%9F%E0%B8%AB%E0%B8%81%E0%B9%84";
 
   const path = usePathname();
 
@@ -101,35 +101,35 @@ const Header = () => {
 
   const notiapi = {
     user1: {
-      name: 'Tk os',
-      event: 'สร้างโพสใหม่',
-      icon: '/image.jpg'
-    },
-    user2: {
-      name: 'Nai thasadon',
-      event: 'ส่งข้อความถึงคุณ',
-      icon: '/image.jpg'
-    },
-    user3: {
-      name: 'Nice mind conector',
-      event: 'ส่งข้อความถึงคุณ',
-      icon: '/image.jpg'
-    },
-    user4: {
       name: 'ระบบ',
-      event: 'แก้ไขระบบคำนวนปุ๋ยเสร็จสิ้น',
+      event: 'เว็บไซต์พร้อมใช้งานแล้ว',
       icon: '/image.jpg'
     },
-    user5: {
-      name: 'Ms.Siriwan',
-      event: 'ส่งข้อความถึงคุณ',
-      icon: '/image.jpg'
-    },
+    // user2: {
+    //   name: 'Nai thasadon',
+    //   event: 'ส่งข้อความถึงคุณ',
+    //   icon: '/image.jpg'
+    // },
+    // user3: {
+    //   name: 'Nice mind conector',
+    //   event: 'ส่งข้อความถึงคุณ',
+    //   icon: '/image.jpg'
+    // },
+    // user4: {
+    //   name: 'ระบบ',
+    //   event: 'แก้ไขระบบคำนวนปุ๋ยเสร็จสิ้น',
+    //   icon: '/image.jpg'
+    // },
+    // user5: {
+    //   name: 'Ms.Siriwan',
+    //   event: 'ส่งข้อความถึงคุณ',
+    //   icon: '/image.jpg'
+    // },
 
   }
 
   const user = {
-    name: 'Tansyakaan',
+    name: 'นาย ใจงาม',
     icon: '/user.png'
   }
 
@@ -157,7 +157,7 @@ const Header = () => {
             </li>
           </ul>
         </div> */}
-          <a href='#' className=" text-xl tracking-wide uppercase flex gap-1 items-center" style={{ padding: " 0  0 0 60px" }}> <Image src="/logo.jpg" draggable="false" className='rounded-full' width={50} height={50} alt="Picture of the author" /><p className='p-0 m-0 hidden md:block text-white'>FFS-Thailand</p> </a>
+          <a href='/' className=" text-xl tracking-wide uppercase flex gap-1 items-center" style={{ padding: " 0  0 0 60px" }}> <Image src="/logo.jpg" draggable="false" className='rounded-full' width={50} height={50} alt="Picture of the author" /><p className='p-0 m-0 hidden md:block text-white'>FFS-Thailand</p> </a>
 
         </div>
 
@@ -183,9 +183,9 @@ const Header = () => {
         <div className="navbar-end ">
 
           <div className="dropdown dropdown-bottom dropdown-start sm:dropdown-end">
-            <div className="form-control relative ">
+            <form  className="form-control relative ">
               <input type="text" placeholder="ค้นหา" className="input text-lg text-white rounded-2xl border-[#4F6F52]  bg-[#759D78] placeholder:text-white h-10 w-24 sm:w-auto " />
-              <FontAwesomeIcon icon={faMagnifyingGlass} className='absolute end-3.5 top-3 text-white' />
+              <button type="submit" className='absolute end-3.5 top-2.5 m-0 p-0'><FontAwesomeIcon icon={faMagnifyingGlass} className=' text-white' /></button>
               <div></div>
               <ul tabIndex={0} className="dropdown-content rounded-lg z-[1] menu mt-1 p-1 shadow bg-[#A8C7AB] text-white rounded-box w-52">
                 <li><a className='hover:bg-[#759D78] text-lg p-2' ><FontAwesomeIcon style={{ width: "30px", height: "30px" }} icon={faNewspaper} />ข่าวล่าสุด</a></li>
@@ -196,7 +196,7 @@ const Header = () => {
 
                 <li><a className='hover:bg-[#759D78] text-lg p-2' ><FontAwesomeIcon style={{ width: "30px", height: "30px" }} icon={faShop} />สินค้าในชุมชน</a></li>
               </ul>
-            </div>
+            </form>
           </div>
 
           <details ref={notificationDropdownRef} className="dropdown dropdown-end">

@@ -9,14 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@edgestore/react": "^0.2.2",
+    "@edgestore/server": "^0.2.2",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@hookform/resolvers": "^3.9.0",
     "axios": "^1.7.3",
+    "firebase": "^10.13.0",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
-    "sweetalert2": "^11.12.4"
+    "react-hook-form": "^7.52.2",
+    "sweetalert2": "^11.12.4",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "daisyui": "^4.11.1",
