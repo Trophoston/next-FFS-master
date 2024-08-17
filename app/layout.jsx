@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        
+        <meta property="og:image" content="https://next-ffs-master.vercel.app/_next/image?url=%2Flogo.jpg&w=64&q=75"/>
         <link rel="icon" href="/" sizes="any" />
       </head>
       <body className={myFont.className}>

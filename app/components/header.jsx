@@ -157,7 +157,7 @@ const Header = () => {
             </li>
           </ul>
         </div> */}
-          <a href='/' className=" text-xl tracking-wide uppercase flex gap-1 items-center" style={{ padding: " 0  0 0 60px" }}> <Image src="/logo.jpg" draggable="false" className='rounded-full' width={50} height={50} alt="Picture of the author" /><p className='p-0 m-0 hidden md:block text-white'>FFS-Thailand</p> </a>
+          <a href='/' className=" text-xl tracking-wide uppercase flex gap-1 items-center" style={{ padding: " 0  0 0 60px" }}> <Image src="/logo.jpg" draggable="false" className='rounded-full w-[50px] h-[50px]' width={200} height={200} alt="Picture of the author" /><p className='p-0 m-0 hidden md:block text-white'>FFS-Thailand</p> </a>
 
         </div>
 
