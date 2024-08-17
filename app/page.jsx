@@ -54,7 +54,7 @@ export default function Home() {
             <div className="h-full w-full xl:w-1/2 overflow-hidden  flex-wrap mt-2">
               <p className="text-4xl text-white drop-shadow-lg">แผนที่ภูมิศาสตร์</p>
               <p className="text-xl text-white pt-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; แผนที่ภูมิศาสตร์สำหรับการวิเคราห์ภูมิศาสตร์ในพื้นที่ของตน  <br />ใช้สำหรับการวิเคราะห์พืชและผลผลิตที่ต้องการจะปลูกหรือพืชที่ปลูกได้ดีในสภาพภูมิศาสตร์ที่แตกต่างกันออกไป</p>
-              <Link href={"/fertul"} className="btn mt-5 end-0">เข้าชมเลย!</Link>
+              <Link href={"/terrian"} className="btn mt-5 end-0">เข้าชมเลย!</Link>
             </div>
 
           </div>
@@ -82,7 +82,7 @@ export default function Home() {
             <div className="h-full w-full xl:w-1/2 overflow-hidden flex-wrap mt-2">
               <p className="text-4xl text-white drop-shadow-lg">ราคาสินค้ารายวัน</p>
               <p className="text-xl text-white pt-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ระบบแสดงรายการราคาสินค้าทางการเกษตรรายวันที่ระบุถึง รายการสินค้าในหมวดหมู่ต่างๆ ชื่อสินค้า ราคาสินค้า ความปลี่ยนแปลงของสินค้าโดยมีมากถึง 6 หมวหมู่ ได้แก่ ผลไม้ ผักสด สินค้าสด น้ำมันพืชและพืชน้ำมัน ข้าว เครื่องเทศ สินค้านำเข้า</p>
-              <Link href={"/fertul"} className="btn mt-5 end-0">เข้าชมเลย!</Link>
+              <Link href={"/vegprice"} className="btn mt-5 end-0">เข้าชมเลย!</Link>
             </div>
 
           </div>
@@ -104,13 +104,13 @@ export default function Home() {
           <div className="flex flex-row-reverse flex-wrap  rounded-lg bg-[#9dc5a0] p-3 ">
 
             <div className="w-full xl:w-1/2 overflow-hidden ps-4 ">
-              <Image draggable="false" src="/web_feture/priceveg.png" width="1000" height="1000" className="object-cover w-100 rounded-md" />
+              <Image draggable="false" src="/web_feture/reward.png" width="1000" height="1000" className="object-cover w-100 rounded-md" />
             </div>
 
             <div className="h-full w-full xl:w-1/2 overflow-hidden flex-wrap mt-2">
               <p className="text-4xl text-white drop-shadow-lg">ผลงานนักเรียน</p>
               <p className="text-xl text-white pt-2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; พื้นที่ในการแสดงผลงานของนักเรียนที่มีความสนใจในด้านการเกษตรและวิทยาศาสตร์ โครงการทดลอง หรือแนวคิดใหม่ๆ ในการพัฒนาการเกษตร ซึ่งสามารถเป็นแรงบันดาลใจให้กับทั้งเกษตรกรและผู้ที่สนใจในเรื่องนี้</p>
-              <Link href={"/fertul"} className="btn mt-5 end-0">เข้าชมเลย!</Link>
+              <Link href={"/student_reward"} className="btn mt-5 end-0">เข้าชมเลย!</Link>
             </div>
 
           </div>
