@@ -129,7 +129,7 @@ const Header = () => {
   }
 
   const user = {
-    name: 'นาย ใจงาม',
+    name: 'ลงชื่อเข้าใช้',
     icon: '/user.png'
   }
 
@@ -183,18 +183,18 @@ const Header = () => {
         <div className="navbar-end ">
 
           <div className="dropdown dropdown-bottom dropdown-start sm:dropdown-end">
-            <form  className="form-control relative ">
-              <input type="text" placeholder="ค้นหา" className="input text-lg text-white rounded-2xl border-[#4F6F52]  bg-[#759D78] placeholder:text-white h-10 w-24 sm:w-auto " />
+            <form action='https://www.google.com/search' method='get' className="form-control relative ">
+              <input type="text" placeholder="ค้นหา" name='q' className="input text-lg text-white rounded-2xl border-[#4F6F52]  bg-[#759D78] placeholder:text-white h-10 w-24 sm:w-auto " />
               <button type="submit" className='absolute end-3.5 top-2.5 m-0 p-0'><FontAwesomeIcon icon={faMagnifyingGlass} className=' text-white' /></button>
               <div></div>
-              <ul tabIndex={0} className="dropdown-content rounded-lg z-[1] menu mt-1 p-1 shadow bg-[#A8C7AB] text-white rounded-box w-52">
-                <li><a className='hover:bg-[#759D78] text-lg p-2' ><FontAwesomeIcon style={{ width: "30px", height: "30px" }} icon={faNewspaper} />ข่าวล่าสุด</a></li>
+              <ul tabIndex={0} className="dropdown-content rounded-lg z-[1] menu mt-1 p-1 shadow bg-[#A8C7AB] text-white w-52">
+                <li><a target='_blank' href='https://www.oae.go.th/view/1/%E0%B8%AA%E0%B8%A3%E0%B8%B8%E0%B8%9B%E0%B8%82%E0%B9%88%E0%B8%B2%E0%B8%A7%E0%B9%80%E0%B8%81%E0%B8%A9%E0%B8%95%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B3%E0%B8%A7%E0%B8%B1%E0%B8%99/TH-TH' className='hover:bg-[#759D78] text-lg p-2' ><FontAwesomeIcon style={{ width: "30px", height: "30px" }} icon={faNewspaper} />ข่าวล่าสุด</a></li>
 
-                <li><a className='hover:bg-[#759D78] text-lg p-2' ><FontAwesomeIcon style={{ width: "30px", height: "30px" }} icon={faPlantWilt} />วิธีปลูกพืช</a></li>
+                <li><a target='_blank' href='http://www.agriman.doae.go.th/home/t.n/t.n1/11th.html' className='hover:bg-[#759D78] text-lg p-2' ><FontAwesomeIcon style={{ width: "30px", height: "30px" }} icon={faPlantWilt} />วิธีปลูกพืช</a></li>
 
-                <li><a className='hover:bg-[#759D78] text-lg p-2' ><FontAwesomeIcon style={{ width: "30px", height: "30px" }} icon={faBagShopping} />ผลิตภัณฑ์แปรรูป</a></li>
+                <li><a target='_blank' href='https://baac-farmersmarket.com/product-category/%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B8%84%E0%B9%89%E0%B8%B2%E0%B9%80%E0%B8%81%E0%B8%A9%E0%B8%95%E0%B8%A3%E0%B9%81%E0%B8%9B%E0%B8%A3%E0%B8%A3%E0%B8%B9%E0%B8%9B/' className='hover:bg-[#759D78] text-lg p-2' ><FontAwesomeIcon style={{ width: "30px", height: "30px" }} icon={faBagShopping} />ผลิตภัณฑ์แปรรูป</a></li>
 
-                <li><a className='hover:bg-[#759D78] text-lg p-2' ><FontAwesomeIcon style={{ width: "30px", height: "30px" }} icon={faShop} />สินค้าในชุมชน</a></li>
+                <li><a target='_blank' href='https://otop.cdd.go.th/' className='hover:bg-[#759D78] text-lg p-2' ><FontAwesomeIcon style={{ width: "30px", height: "30px" }} icon={faShop} />สินค้าในชุมชน</a></li>
               </ul>
             </form>
           </div>
@@ -262,12 +262,12 @@ const Header = () => {
                 </a>
               </li>
 
-              <li>
+              {/* <li>
                 <a href='goorle.com' className=" justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 ">
                   <FontAwesomeIcon icon={faGear} className='text-white rounded-full p-2 bg-[#1A4D2E]' style={{ width: "25px", height: "25px" }} />
                   <p className='p-0 px-2 m-0 text-lg text-white content-center '>การตั้งค่า</p>
                 </a>
-              </li>
+              </li> */}
 
               <li>
                 <a href='/kwamru' className=" justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 ">
@@ -275,13 +275,13 @@ const Header = () => {
                   <p className='p-0 px-2 m-0 text-lg text-white content-center '>ให้ความรู้</p>
                 </a>
               </li>
-
+{/* 
               <li>
                 <a href='goorle.com' className=" justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 ">
                   <FontAwesomeIcon icon={faQuestion} className='text-white rounded-full p-2 bg-[#1A4D2E]' style={{ width: "25px", height: "25px" }} />
                   <p className='p-0 px-2 m-0 text-lg text-white content-center '>ความช่วยเหลือ</p>
                 </a>
-              </li>
+              </li> */}
 
               <li>
                 <a href='goorle.com' className=" justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 ">
