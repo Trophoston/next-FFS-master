@@ -184,7 +184,7 @@ const Header = () => {
 
           <div className="dropdown dropdown-bottom dropdown-start sm:dropdown-end">
             <form action='https://www.google.com/search' method='get' className="form-control relative ">
-              <input type="text" placeholder="ค้นหา" name='q' className="input text-lg text-white rounded-2xl border-[#4F6F52]  bg-[#759D78] placeholder:text-white h-10 w-24 sm:w-auto " />
+              <input autocomplete="off" type="text" placeholder="ค้นหา" name='q' className="input text-lg text-white rounded-2xl border-[#4F6F52]  bg-[#759D78] placeholder:text-white h-10 w-24 sm:w-auto " />
               <button type="submit" className='absolute end-3.5 top-2.5 m-0 p-0'><FontAwesomeIcon icon={faMagnifyingGlass} className=' text-white' /></button>
               <div></div>
               <ul tabIndex={0} className="dropdown-content rounded-lg z-[1] menu mt-1 p-1 shadow bg-[#A8C7AB] text-white w-52">
