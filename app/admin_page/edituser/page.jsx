@@ -3,15 +3,14 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faBuildingColumns } from "@fortawesome/free-solid-svg-icons";
-import Header from '../components/header';
+import Header from '../../components/header';
 
 export default function Register() {
   const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    phone: "",
-    password: "",
-    confirmPassword: ""
+    username: "JhonDig",
+    email: "Nigg@r.com",
+    phone: "1234567890",
+    password: "1234pass"
   });
 
   const handleChange = (e) => {
@@ -62,7 +61,7 @@ export default function Register() {
         onSubmit={handleSubmit}
         className="bg-[#4f6f52] p-4 rounded-xl w-full sm:w-[400px] flex flex-col items-center justify-center gap-2 shadow-xl"
       >
-        <p className="text-center text-white text-[45px] p-0 mb-2">สมัครสมาชิก</p>
+        <p className="text-center text-white text-[45px] p-0 mb-2">แก้ไขข้อมูล</p>
 
         <div className="flex flex-col">
           <label htmlFor="username" className="text-white">ชื่อผู้ใช้</label>
@@ -104,7 +103,7 @@ export default function Register() {
           <label htmlFor="password" className="text-white">รหัสผ่าน</label>
           <input
             required
-            type="password"
+            type="text"
             id="password"
             className="bg-[#e8dfca] border-4 rounded-lg p-1 text-xl"
             value={formData.password}
@@ -112,26 +111,14 @@ export default function Register() {
           />
         </div>
 
-        <div className="flex flex-col">
-          <label htmlFor="confirmPassword" className="text-white">ยืนยันรหัสผ่าน</label>
-          <input
-            required
-            type="password"
-            id="confirmPassword"
-            className="bg-[#e8dfca] border-4 rounded-lg p-1 text-xl"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="flex items-center">
+        <div className="flex flex-rows items-center gap-6">
           <button
             type="submit"
-            className="p-2 hover:bg-[#6b906e] duration-300 bg-[#759d78] rounded-lg text-white text-xl p-2 px-6 mt-1 me-3"
+            className="p-2 hover:bg-[#6b906e] duration-300 bg-[#759d78] rounded-lg text-white text-xl p-2 px-6 "
           >
             ยืนยัน
           </button>
-          <a href="/login" className="text-white">เข้าสู่ระบบ</a>
+          <a href="/admin_page" className="p-2 hover:bg-[#6b906e] duration-300 border-2 block border-[#759d78] rounded-lg text-white text-xl p-2 px-6 ">ยกเลิก</a>
         </div>
       </form>
     </div>

@@ -2,47 +2,13 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faBuildingColumns } from "@fortawesome/free-solid-svg-icons";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
+import axios from 'axios';
 
 import Header from '../components/header';
 
 export default function Login() {
-
-  const axios = require('axios');
-
-  const callApi = async (username) => {
-    try {
-      const res = await axios.get(`https://us-central1-ffs-thailand.cloudfunctions.net/api/get-user/${username}`);
-
-      const data = res.data;
-
-      console.log(data)
-
-      console.log("Password : " + data.password)
-
-      if (password === data.password) {
-        Swal.fire({
-          title: "Success?",
-          text: "Success Login!!",
-          icon: "success"
-        });
-      } else {
-        Swal.fire({
-          title: "Error?",
-          text: "Username or Password is incorrect!!",
-          icon: "error"
-        });
-      }
-
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-      Swal.fire({
-        title: "Error?",
-        text: "Username or Password is incorrect!!",
-        icon: "error"
-      });
-    }
-  };
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -53,16 +19,55 @@ export default function Login() {
 
   const onChangePassword = (e) => setPassword(e.target.value);
 
+  const callApi = async (username) => {
+    try {
+      const res = await axios.get(`https://us-central1-ffs-thailand.cloudfunctions.net/api/get-user/${username}`);
+      const data = res.data;
+
+      console.log(data);
+      console.log("Password : " + data.password);
+
+      if (password === data.password) {
+        // Store username and some token or user ID in the cookie
+        Cookies.set('username', username, { expires: 7 });  // Cookie expires in 7 days
+        Cookies.set('userId', data.userId, { expires: 7 });
+
+        Swal.fire({
+          title: "Success!",
+          text: "Login Successful!!",
+          icon: "success"
+        });
+
+        // Redirect the user to the dashboard or home page after successful login
+        window.location.href = '/';
+
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "Username or Password is incorrect!!",
+          icon: "error"
+        });
+      }
+
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      Swal.fire({
+        title: "Error!",
+        text: "Username or Password is incorrect!!",
+        icon: "error"
+      });
+    }
+  };
+
   function onHandle(e) {
     e.preventDefault();
     callApi(username);
-    //ไปหาทางดึง username จาก array
   }
 
   return (
     <div className="">
       <div className="flex items-center justify-center mt-24">
-        <form action="" className="bg-[#4f6f52] p-4 rounded-xl w-full sm:w-[400px] flex flex-col items-center justify-center gap-2 shadow-xl" >
+        <form action="" className="bg-[#4f6f52] p-4 rounded-xl w-full sm:w-[400px] flex flex-col items-center justify-center gap-2 shadow-xl">
           <p className="text-center text-white text-[45px] p-0 mb-2">ลงชื่อเข้าใช้</p>
           <div className="flex flex-col">
             <label htmlFor="user_f" className="text-white">ชื่อผู้ใช้</label>
