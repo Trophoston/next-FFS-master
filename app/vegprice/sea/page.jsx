@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { setapiid } from '../layout.jsx';
+import { setapiid } from '../utils.js';
 
 
 export default function VegPrice() {
