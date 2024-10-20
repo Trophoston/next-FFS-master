@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body{
-    height: 200vh;
+    min-height: 100vh;
     background-color: #e8dfca;
     animation: start 1s ease-in-out;
 }
@@ -19,8 +19,13 @@ body{
 }
 
 nav{
-    padding-bottom: 73px;
+    padding-bottom: 64px;
     z-index: 1000;
+}
+
+.banner{
+    margin-left: 74px;
+    margin-bottom: 25px;
 }
 
 main{
@@ -46,6 +51,73 @@ main{
     white-space: nowrap; /* Prevent line breaks */
 }
 
+.hidescrlb::-webkit-scrollbar {
+    display: none;
+  }
+
+.hp{
+    padding: 15px;
+    
+}
+
+.alc{
+    text-align: center;
+}
+
+.ale{
+    text-align: center;
+}
+
+
+@media screen and (max-width: 600px) {
+    .hp{
+        padding: 3.5px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .ale{
+        text-align: end;
+    }
+}
+
+
+/* tailwind.css or custom CSS file */
+@layer utilities {
+    .scrollbar-thin {
+      scrollbar-width: thin;
+    }
+    .scrollbar-thumb-rounded {
+      scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+      scrollbar-width: thin;
+    }
+    .scrollbar-thumb-rounded::-webkit-scrollbar {
+      width: 8px;
+      
+    }
+    .scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
+      background-color: var(--scrollbar-thumb-color);
+      border-radius: 9999px;
+    }
+    .scrollbar-thumb-rounded::-webkit-scrollbar-track {
+      background: var(--scrollbar-track-color);
+    }
+  }
+  
+.blhv{
+    transition: transform 0.3s;
+}
+.blhv:hover{
+    transform: scale(0.95);
+}
+
+.transithon{
+    transition: 1s all;
+}
+
+.weth{
+    height: 90vh;
+}
 
   
 

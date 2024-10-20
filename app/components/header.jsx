@@ -1,14 +1,39 @@
 'use client';
 import { usePathname } from 'next/navigation';
-import React, { useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Link from 'next/link'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faMountainSun, faMoneyBillWheat, faJarWheat, faCloudSunRain, faMagnifyingGlass, faBell } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHouse,
+  faMountainSun,
+  faMoneyBillWheat,
+  faJarWheat,
+  faCloudSunRain,
+  faMagnifyingGlass,
+  faBell,
+  faNewspaper,
+  faPlantWilt,
+  faBagShopping,
+  faShop,
+  faChevronDown,
+  faGear,
+  faChalkboardUser,
+  faQuestion,
+  faArrowRightFromBracket,
+  faKey,
+
+} from "@fortawesome/free-solid-svg-icons";
 import Slidebar from './slidebar';
+import Image from 'next/image';
+import Cookies from 'js-cookie';
+import { icon } from '@fortawesome/fontawesome-svg-core';
+
+const [username, setUsername] = "";
+
+
 
 
 // var path = useRouter() 
-
 
 
 var house, JarWheat, MoneyBillWheat, MountainSun, CloudSunRain;
@@ -16,7 +41,17 @@ var house, JarWheat, MoneyBillWheat, MountainSun, CloudSunRain;
 
 const Header = () => {
 
+  const [username, setUsername] = useState('');
 
+  useEffect(() => {
+    // Get the username from cookies when the component mounts
+    const savedUsername = Cookies.get('username');
+    if (savedUsername) {
+      setUsername(savedUsername);
+    }
+  }, []);
+
+  const api_sherch = "https://us-central1-ffs-thailand.cloudfunctions.net/api/search-student-reward/%E0%B8%9F%E0%B8%AB%E0%B8%81%E0%B9%84";
 
   const path = usePathname();
 
@@ -38,6 +73,11 @@ const Header = () => {
     MoneyBillWheat = active;
     house = JarWheat = MountainSun = CloudSunRain = nonactive;
   }
+  else if (path.startsWith("/vegprice/")) {
+    MoneyBillWheat = active;
+    house = JarWheat = MountainSun = CloudSunRain = nonactive;
+  }
+
   else if (path == "/terrian") {
     MountainSun = active;
     house = JarWheat = MoneyBillWheat = CloudSunRain = nonactive;
@@ -52,8 +92,92 @@ const Header = () => {
   }
 
 
+  const notificationDropdownRef = useRef(null);
+  const avatarDropdownRef = useRef(null);
 
+  useEffect(() => {
+    // Function to handle click outside the dropdowns
+    const handleClickOutside = (event) => {
+      if (notificationDropdownRef.current && !notificationDropdownRef.current.contains(event.target)) {
+        notificationDropdownRef.current.removeAttribute('open');
+      }
+      if (avatarDropdownRef.current && !avatarDropdownRef.current.contains(event.target)) {
+        avatarDropdownRef.current.removeAttribute('open');
+      }
+    };
 
+    // Add event listener for clicks on the document
+    document.addEventListener('click', handleClickOutside, true);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true);
+    };
+  }, []);
+
+  const notiapi = {
+    user1: {
+      name: 'ระบบ',
+      event: 'เว็บไซต์พร้อมใช้งานแล้ว',
+      icon: '/image.jpg'
+    },
+    // user2: {
+    //   name: 'Nai thasadon',
+    //   event: 'ส่งข้อความถึงคุณ',
+    //   icon: '/image.jpg'
+    // },
+    // user3: {
+    //   name: 'Nice mind conector',
+    //   event: 'ส่งข้อความถึงคุณ',
+    //   icon: '/image.jpg'
+    // },
+    // user4: {
+    //   name: 'ระบบ',
+    //   event: 'แก้ไขระบบคำนวนปุ๋ยเสร็จสิ้น',
+    //   icon: '/image.jpg'
+    // },
+    // user5: {
+    //   name: 'Ms.Siriwan',
+    //   event: 'ส่งข้อความถึงคุณ',
+    //   icon: '/image.jpg'
+    // },
+
+  }
+
+  let user;
+  let iconloginlink;
+
+  // Check if username exists
+  if (username == "") {
+    user = {
+      name: 'ลงชื่อเข้าใช้', // "Sign In" in Thai
+      icon: '/user.png'
+    };
+    iconloginlink = "/login";  // Redirect to login if not logged in
+  } else {
+    user = {
+      name: username,
+      icon: '/user.png'
+    };
+    iconloginlink = "#";  // No action needed if already logged in
+  }
+
+  const handleLogout = () => {
+    // Remove the cookies
+    Cookies.remove('username');  // Remove the 'username' cookie
+    Cookies.remove('userId');    // Remove the 'userId' cookie
+
+    // Optionally, redirect to the login or home page after logout
+    window.location.href = '/';  // Change to the desired page
+  };
+
+  const [userId, setUserId] = useState(null);
+  const [isClient, setIsClient] = useState(false); // Flag to check client-side
+
+  useEffect(() => {
+    setUserId(Cookies.get('userId')); // Now get the cookie client-side
+    setIsClient(true); // Now we are sure it's the client side
+  }, []);
 
   return (
     <nav className='relative'>
@@ -66,34 +190,35 @@ const Header = () => {
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
           </div>
           <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-            <li><a>Item 1</a></li>
-            <li><a>Item 3</a></li>
-            <li><a>Item 3</a></li>
+            <li><link>Item 1</li>
+            <li><link>Item 3</li>
+            <li><link>Item 3</li>
             <li>
-              <a>Parent</a>
+              <link>Parent
               <ul className="p-2">
-                <li><a>Submenu 1</a></li>
-                <li><a>Submenu 2</a></li>
+                <li><link>Submenu 1</li>
+                <li><link>Submenu 2</li>
               </ul>
             </li>
           </ul>
         </div> */}
-          <a href='#' className=" text-xl uppercase mx-5" style={{ padding: " 0  0 0 64px" }}><img src=''></img>FFS-Thailand</a>
+          <a href='/' className=" text-xl tracking-wide uppercase flex gap-1 items-center" style={{ padding: " 0  0 0 60px" }}> <Image src="/logo.jpg" draggable="false" className='rounded-full w-[50px] h-[50px]' width={200} height={200} alt="Picture of the author" /><p className='p-0 m-0 hidden md:block text-white'>FFS-Thailand</p> </a>
 
         </div>
+
         <div className="navbar-center hidden lg:flex align-bottom ">
           <ul className="flex gap-7 pb-0 pt-3  ">
-            <li className={house}><Link href={"/"} ><FontAwesomeIcon icon={faHouse} style={{ width: "45px", height: "45px" }} /></Link></li>
-            <li className={JarWheat}><Link href={"/fertul"} ><FontAwesomeIcon icon={faJarWheat} style={{ width: "45px", height: "45px" }} /></Link></li>
-            <li className={MountainSun}><Link href={"/terrian"} ><FontAwesomeIcon icon={faMountainSun} style={{ width: "45px", height: "45px" }} /></Link></li>
-            <li className={CloudSunRain}><Link href={"/weather"} ><FontAwesomeIcon icon={faCloudSunRain} style={{ width: "45px", height: "45px" }} /></Link></li>
-            <li className={MoneyBillWheat}><Link href={"/vegprice"} ><FontAwesomeIcon icon={faMoneyBillWheat} style={{ width: "45px", height: "45px" }} /></Link></li>
+            <Link href={"/"} ><li className={house}><FontAwesomeIcon icon={faHouse} style={{ width: "45px", height: "45px" }} /></li></Link>
+            <Link href={"/fertul"} ><li className={JarWheat}><FontAwesomeIcon icon={faJarWheat} style={{ width: "45px", height: "45px" }} /></li></Link>
+            <Link href={"/terrian"} ><li className={MountainSun}><FontAwesomeIcon icon={faMountainSun} style={{ width: "45px", height: "45px" }} /></li></Link>
+            <Link href={"/weather"} ><li className={CloudSunRain}><FontAwesomeIcon icon={faCloudSunRain} style={{ width: "45px", height: "45px" }} /></li></Link>
+            <Link href={"/vegprice"} ><li className={MoneyBillWheat}><FontAwesomeIcon icon={faMoneyBillWheat} style={{ width: "45px", height: "45px" }} /></li></Link>
             {/* <li>
             <details>
               <summary>Parent</summary>
               <ul className="p-2">
-                <li><a>Submenu 1</a></li>
-                <li><a>Submenu 2</a></li>
+                <li><link>Submenu 1</li>
+                <li><link>Submenu 2</li>
               </ul>
             </details>
           </li> */}
@@ -102,58 +227,130 @@ const Header = () => {
 
         <div className="navbar-end ">
 
-          <div className="dropdown dropdown-bottom dropdown-end">
-            <div className="form-control relative ">
-              <input type="text" placeholder="ค้นหา" className="input text-lg text-white rounded-2xl border-[#4F6F52]  bg-[#759D78] placeholder:text-white h-10 w-24 md:w-auto " />
-              <FontAwesomeIcon icon={faMagnifyingGlass} className='absolute end-3.5 top-3 text-white' />
+          <div className="dropdown dropdown-bottom dropdown-start sm:dropdown-end">
+            <form action='https://www.google.com/search' method='get' className="form-control relative ">
+              <input autoComplete="off" type="text" placeholder="ค้นหา" name='q' className="input text-lg text-white rounded-2xl border-[#4F6F52]  bg-[#759D78] placeholder:text-white h-10 w-24 sm:w-auto " />
+              <button type="submit" className='absolute end-3.5 top-2.5 m-0 p-0'><FontAwesomeIcon icon={faMagnifyingGlass} className=' text-white' /></button>
               <div></div>
-              <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                <li><a>Item 1</a></li>
-                <li><a>Item 2</a></li>
+              <ul tabIndex={0} className="dropdown-content rounded-lg z-[1] menu mt-1 p-1 shadow bg-[#A8C7AB] text-white w-52">
+                <li><a target='_blank' href='https://www.oae.go.th/view/1/%E0%B8%AA%E0%B8%A3%E0%B8%B8%E0%B8%9B%E0%B8%82%E0%B9%88%E0%B8%B2%E0%B8%A7%E0%B9%80%E0%B8%81%E0%B8%A9%E0%B8%95%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%88%E0%B8%B3%E0%B8%A7%E0%B8%B1%E0%B8%99/TH-TH' className='hover:bg-[#759D78] text-lg p-2' ><FontAwesomeIcon style={{ width: "30px", height: "30px" }} icon={faNewspaper} />ข่าวล่าสุด</a></li>
+
+                <li><a target='_blank' href='http://www.agriman.doae.go.th/home/t.n/t.n1/11th.html' className='hover:bg-[#759D78] text-lg p-2' ><FontAwesomeIcon style={{ width: "30px", height: "30px" }} icon={faPlantWilt} />วิธีปลูกพืช</a></li>
+
+                <li><a target='_blank' href='https://baac-farmersmarket.com/product-category/%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B8%84%E0%B9%89%E0%B8%B2%E0%B9%80%E0%B8%81%E0%B8%A9%E0%B8%95%E0%B8%A3%E0%B9%81%E0%B8%9B%E0%B8%A3%E0%B8%A3%E0%B8%B9%E0%B8%9B/' className='hover:bg-[#759D78] text-lg p-2' ><FontAwesomeIcon style={{ width: "30px", height: "30px" }} icon={faBagShopping} />ผลิตภัณฑ์แปรรูป</a></li>
+
+                <li><a target='_blank' href='https://otop.cdd.go.th/' className='hover:bg-[#759D78] text-lg p-2' ><FontAwesomeIcon style={{ width: "30px", height: "30px" }} icon={faShop} />สินค้าในชุมชน</a></li>
               </ul>
-            </div>
+            </form>
           </div>
 
-
-
-
-          <details className="dropdown dropdown-end">
-            <summary tabindex="0" role="button" className="m-1 btn w-12 bg-transparent border-transparent hover:border-transparent  hover:bg-transparent ">
+          <details ref={notificationDropdownRef} className="dropdown dropdown-end">
+            <summary
+              tabIndex="0"
+              role="button"
+              className="m-1 btn w-12 bg-transparent border-transparent hover:border-transparent hover:bg-transparent"
+            >
               <div className="w-10 rounded-full indicator">
                 <span className="badge badge-xs badge-error indicator-item"></span>
-                <FontAwesomeIcon icon={faBell} style={{ width: "28px", height: "28px" }} className='btn-ghost transition-all duration-200 btn-circle rounded-full text-white p-1 bg-[#759D78]' />
+                <FontAwesomeIcon
+                  icon={faBell}
+                  style={{ width: '28px', height: '28px' }}
+                  className="btn-ghost transition-all duration-200 btn-circle rounded-full text-white p-1 bg-[#759D78]"
+                />
               </div>
             </summary>
-            <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-              <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
+            <ul
+              tabIndex="0"
+              className="mt-3 z-[1] shadow p-2  menu-sm dropdown-content  bg-[#4F6F52] rounded-box h-80 overflow-y-scroll w-52 sm:w-96 text-white hidescrlb" //class name i delete "menu"
+            >
+              <li className='text-xl text-center ' id='notihead' >
+                การแจ้งเตือน
+              </li>
+              <div className="divider p-0 my-1 bg-white h-px"></div>
+              {Object.keys(notiapi).map(key => (
+                <li key={key} className='p-0 flex flex-row items-center '>
+                  <img src={notiapi[key].icon} draggable="false" alt={`${notiapi[key].name} icon`} width={60} height={60} className="p-0 mx-1 my-3 rounded-full" />
+                  <p className=' sm:text-lg text-md ps-2 m-0 '><b className=''>{notiapi[key].name} </b>{notiapi[key].event}</p>
+                </li>
+              ))}
+
+              <div className="divider p-0 my-1 bg-white h-px"></div>
+              <li className='text-center '>
+                สิ้นสุดการแจ้งเตือน
+                <a href="#notihead" className=' px-1 py-0 m-1 btn btn-ghost  text-[#dddddd] '>
+                  กลับสู่ด้านบน
                 </a>
               </li>
-              <li><a>Settings</a></li>
-              <li><a>Logout</a></li>
             </ul>
           </details>
 
-          <details className="dropdown dropdown-end">
+
+          {/* Second Dropdown */}
+          <details ref={avatarDropdownRef} className="dropdown dropdown-end">
             <summary className="m-1 btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <Image src={user.icon} draggable="false" alt="Picture of the author" width={50} height={50} className="rounded-full" />
               </div>
+              <FontAwesomeIcon className='absolute end-0 bottom-0 rounded-full border-2 text-white border-[#4F6F52] bg-[#4F6F52] ' icon={faChevronDown} />
             </summary>
-            <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+            <ul
+              tabIndex={0}
+              className="mt-3 z-[1] p-2  shadow  menu-sm dropdown-content rounded-box w-64 bg-[#4F6F52] "
+            >
               <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
+                <a href={iconloginlink} className=" justify-start flex flex-col hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 shadow-xl">
+                  <div className='flex flex-row  items-center justify-start p-0 pb-1 m-0 '>
+                    <Image src={user.icon} draggable="false" alt="Picture of the author" width={50} height={50} className="rounded-full me-1.5 p-0" />
+                    <p className='text-white text-xl p-0 m-0' >{user.name}</p>
+                  </div>
+                  <div className="divider my-1 bg-[#354537] h-px border-1 p-0 m-0"></div>
                 </a>
               </li>
-              <li><a>Settings</a></li>
-              <li><a>Logout</a></li>
+
+              {/* <li>
+                <a href='goorle.com' className=" justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 ">
+                  <FontAwesomeIcon icon={faGear} className='text-white rounded-full p-2 bg-[#1A4D2E]' style={{ width: "25px", height: "25px" }} />
+                  <p className='p-0 px-2 m-0 text-lg text-white content-center '>การตั้งค่า</p>
+                </a>
+              </li> */}
+
+              <li>
+                <a href='/kwamru' className=" justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 ">
+                  <FontAwesomeIcon icon={faChalkboardUser} className='text-white rounded-full p-2 bg-[#1A4D2E]' style={{ width: "25px", height: "25px" }} />
+                  <p className='p-0 px-2 m-0 text-lg text-white content-center '>ให้ความรู้</p>
+                </a>
+              </li>
+              {/* 
+              <li>
+                <a href='goorle.com' className=" justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 ">
+                  <FontAwesomeIcon icon={faQuestion} className='text-white rounded-full p-2 bg-[#1A4D2E]' style={{ width: "25px", height: "25px" }} />
+                  <p className='p-0 px-2 m-0 text-lg text-white content-center '>ความช่วยเหลือ</p>
+                </a>
+              </li> */}
+
+<li>
+        {isClient && userId === 'e864ff39' && (
+          <a href='/admin_page' className="justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0">
+            <FontAwesomeIcon icon={faKey} className='text-white rounded-full p-2 bg-[#1A4D2E]' style={{ width: "25px", height: "25px" }} />
+            <p className='p-0 px-2 m-0 text-lg text-white content-center'>หน้าแอดมิน</p>
+          </a>
+        )}
+      </li>
+
+      <li>
+        {isClient && username && (
+          <a href='#' onClick={handleLogout} className="justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0">
+            <FontAwesomeIcon icon={faArrowRightFromBracket} className='text-white rounded-full p-2 bg-[#1A4D2E]' style={{ width: "25px", height: "25px" }} />
+            <p className='p-0 px-2 m-0 text-lg text-white content-center'>ออกจากระบบ</p>
+          </a>
+        )}
+      </li>
+
+
+
+
             </ul>
           </details>
-
 
         </div>
       </div>

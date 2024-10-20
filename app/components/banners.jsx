@@ -2,8 +2,7 @@
 import { usePathname } from 'next/navigation';
 import React, { useEffect } from 'react';
 import Link from 'next/link'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faMountainSun, faMoneyBillWheat, faJarWheat, faCloudSunRain, faBars } from "@fortawesome/free-solid-svg-icons";
+import Image from 'next/image';
 
 
 
@@ -12,19 +11,37 @@ const Banner = () => {
 
   const path = usePathname();
 
+  var sauce = "";
+  var classy = "block";
+
 
   if (path == "/") {
+    sauce = "/banner/main.png";
   }
   else if (path == "/fertul") {
+    sauce = "/banner/fertul.png";
   }
   else if (path == "/vegprice") {
+    sauce = "/banner/price.png";
+  } 
+  else if (path.startsWith("/vegprice/")) { // Handles any subpage under /vegprice
+    sauce = "/banner/price.png";
   }
   else if (path == "/terrian") {
+    sauce = "/banner/main.png";
   }
   else if (path == "/weather") {
+    sauce = "/banner/weather.png";
+  }
+  else if (path == "/kwamru"){
+    sauce = "/banner/main.png";
+  }
+  else if (path == "/student_reward"){
+    sauce = "/banner/main.png";
   }
   else {
-    
+    classy = "hidden";
+    sauce = "";
   }
 
 
@@ -33,6 +50,9 @@ const Banner = () => {
 
   return (
     <>
+      <div className='banner'>
+        <Image draggable="false" src={sauce} width={1861} height={396} className={classy} />
+      </div>
     </>
   )
 }
