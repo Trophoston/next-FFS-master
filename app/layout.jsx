@@ -5,6 +5,7 @@ import Banner from './components/banners'
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import Swal from 'sweetalert2'
+import React, { Suspense } from "react";
 
 const myFont = localFont({ src: './src/Kanit-Regular.ttf' })
 
@@ -41,7 +42,9 @@ export default function RootLayout({ children }) {
 
 
       <main className='pb-16'>
+        <Suspense fallback={<div>Loading...</div>}>
         {children}
+        </Suspense>
       </main>
 
 
