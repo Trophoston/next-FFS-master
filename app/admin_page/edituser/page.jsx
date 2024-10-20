@@ -1,20 +1,21 @@
 'use client';
 
 import Cookies from 'js-cookie';
-import { useState, useEffect, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation'; 
+import { useState, useEffect } from 'react';
+import { useSearchParams, usePathname } from 'next/navigation'; 
 import Swal from 'sweetalert2';
+
 
 export default function Register() {
   useEffect(() => {
+    
     const adminUsername = Cookies.get('username'); // Assuming your cookie name is 'username'
-
+    
     if (adminUsername !== 'adminuser_01') {
-      // Redirect to the index page if the user is not admin        
-      window.location.href = '/';
+        // Redirect to the index page if the user is not admin        
+        window.location.href = '/';
     }
-  }, []);
-
+});
   const [userData, setUserData] = useState({
     username: "",
     email: "",
@@ -24,7 +25,8 @@ export default function Register() {
   const [error, setError] = useState(null);
 
   const searchParams = useSearchParams(); // Use in client-side only
-  const usernameParam = searchParams?.get('username'); // Safe-check `searchParams`
+
+  const usernameParam = searchParams.get('username'); // Safe-check `searchParams` 
 
   useEffect(() => {
     if (usernameParam) {
@@ -76,8 +78,10 @@ export default function Register() {
         })
       });
 
+
       if (response.ok) {
         Swal.fire("Success!", "User data updated successfully!", "success");
+        
         window.location.href = '/admin_page';
       } else {
         const errorData = await response.json();
@@ -102,63 +106,61 @@ export default function Register() {
   }
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div className="">
-        <div className="flex items-center justify-center mt-24">
-          <form
-            onSubmit={handleSubmit}
-            className="bg-[#4f6f52] p-4 rounded-xl w-full sm:w-[400px] flex flex-col items-center justify-center gap-2 shadow-xl"
-          >
-            <p className="text-center text-white text-[45px] p-0 mb-2">แก้ไขข้อมูล</p>
+    <div className="">
+      <div className="flex items-center justify-center mt-24">
+        <form 
+          onSubmit={handleSubmit}
+          className="bg-[#4f6f52] p-4 rounded-xl w-full sm:w-[400px] flex flex-col items-center justify-center gap-2 shadow-xl"
+        >
+          <p className="text-center text-white text-[45px] p-0 mb-2">แก้ไขข้อมูล</p>
 
-            <div className="flex flex-col">
-              <label htmlFor="username" className="text-white">ชื่อผู้ใช้</label>
-              <input
-                required
-                type="text"
-                id="username"
-                className="bg-[#e8dfca] border-4 rounded-lg p-1 text-xl"
-                value={userData.username}
-                onChange={handleChange}
-              />
-            </div>
+          <div className="flex flex-col">
+            <label htmlFor="username" className="text-white">ชื่อผู้ใช้</label>
+            <input
+              required
+              type="text"
+              id="username"
+              className="bg-[#e8dfca] border-4 rounded-lg p-1 text-xl"
+              value={userData.username}
+              onChange={handleChange}
+            />
+          </div>
 
-            <div className="flex flex-col">
-              <label htmlFor="email" className="text-white">อีเมล</label>
-              <input
-                required
-                type="email"
-                id="email"
-                className="bg-[#e8dfca] border-4 rounded-lg p-1 text-xl"
-                value={userData.email}
-                onChange={handleChange}
-              />
-            </div>
+          <div className="flex flex-col">
+            <label htmlFor="email" className="text-white">อีเมล</label>
+            <input
+              required
+              type="email"
+              id="email"
+              className="bg-[#e8dfca] border-4 rounded-lg p-1 text-xl"
+              value={userData.email}
+              onChange={handleChange}
+            />
+          </div>
 
-            <div className="flex flex-col">
-              <label htmlFor="password" className="text-white">รหัสผ่าน</label>
-              <input
-                required
-                type="text"
-                id="password"
-                className="bg-[#e8dfca] border-4 rounded-lg p-1 text-xl"
-                value={userData.password}
-                onChange={handleChange}
-              />
-            </div>
+          <div className="flex flex-col">
+            <label htmlFor="password" className="text-white">รหัสผ่าน</label>
+            <input
+              required
+              type="text"
+              id="password"
+              className="bg-[#e8dfca] border-4 rounded-lg p-1 text-xl"
+              value={userData.password}
+              onChange={handleChange}
+            />
+          </div>
 
-            <div className="flex flex-rows items-center gap-6">
-              <button
-                type="submit"
-                className="p-2 hover:bg-[#6b906e] duration-300 bg-[#759d78] rounded-lg text-white text-xl p-2 px-6"
-              >
-                ยืนยัน
-              </button>
-              <a href="/admin_page" className="p-2 hover:bg-[#6b906e] duration-300 border-2 block border-[#759d78] rounded-lg text-white text-xl p-2 px-6">ยกเลิก</a>
-            </div>
-          </form>
-        </div>
+          <div className="flex flex-rows items-center gap-6">
+            <button
+              type="submit"
+              className="p-2 hover:bg-[#6b906e] duration-300 bg-[#759d78] rounded-lg text-white text-xl p-2 px-6"
+            >
+              ยืนยัน
+            </button>
+            <a href="/admin_page" className="p-2 hover:bg-[#6b906e] duration-300 border-2 block border-[#759d78] rounded-lg text-white text-xl p-2 px-6 ">ยกเลิก</a>
+          </div>
+        </form>
       </div>
-    </Suspense>
+    </div>
   );
 }
