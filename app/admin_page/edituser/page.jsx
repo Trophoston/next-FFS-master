@@ -1,21 +1,20 @@
 'use client';
 
 import Cookies from 'js-cookie';
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation'; 
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Swal from 'sweetalert2';
-
 
 export default function Register() {
   useEffect(() => {
-    
     const adminUsername = Cookies.get('username'); // Assuming your cookie name is 'username'
-    
+
     if (adminUsername !== 'adminuser_01') {
-        // Redirect to the index page if the user is not admin        
-        window.location.href = '/';
+      // Redirect to the index page if the user is not admin        
+      window.location.href = '/';
     }
-});
+  }, []);
+
   const [userData, setUserData] = useState({
     username: "",
     email: "",
@@ -25,7 +24,7 @@ export default function Register() {
   const [error, setError] = useState(null);
 
   const searchParams = useSearchParams(); // Use in client-side only
-  const usernameParam = searchParams?.get('username'); // Safe-check `searchParams` 
+  const usernameParam = searchParams?.get('username'); // Safe-check `searchParams`
 
   useEffect(() => {
     if (usernameParam) {
@@ -77,10 +76,8 @@ export default function Register() {
         })
       });
 
-
       if (response.ok) {
         Swal.fire("Success!", "User data updated successfully!", "success");
-        
         window.location.href = '/admin_page';
       } else {
         const errorData = await response.json();
@@ -107,7 +104,7 @@ export default function Register() {
   return (
     <div className="">
       <div className="flex items-center justify-center mt-24">
-        <form 
+        <form
           onSubmit={handleSubmit}
           className="bg-[#4f6f52] p-4 rounded-xl w-full sm:w-[400px] flex flex-col items-center justify-center gap-2 shadow-xl"
         >
@@ -161,5 +158,14 @@ export default function Register() {
         </form>
       </div>
     </div>
+  );
+}
+
+// Wrap your Register component in Suspense in the page component
+export function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Register />
+    </Suspense>
   );
 }
