@@ -1,6 +1,6 @@
 'use client';
 import { usePathname } from 'next/navigation';
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Link from 'next/link'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -20,11 +20,17 @@ import {
   faChalkboardUser,
   faQuestion,
   faArrowRightFromBracket,
+  faKey,
 
 } from "@fortawesome/free-solid-svg-icons";
 import Slidebar from './slidebar';
 import Image from 'next/image';
+import Cookies from 'js-cookie';
 import { icon } from '@fortawesome/fontawesome-svg-core';
+
+const [username, setUsername] = "";
+
+
 
 
 // var path = useRouter() 
@@ -34,6 +40,16 @@ var house, JarWheat, MoneyBillWheat, MountainSun, CloudSunRain;
 
 
 const Header = () => {
+
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    // Get the username from cookies when the component mounts
+    const savedUsername = Cookies.get('username');
+    if (savedUsername) {
+      setUsername(savedUsername);
+    }
+  }, []);
 
   const api_sherch = "https://us-central1-ffs-thailand.cloudfunctions.net/api/search-student-reward/%E0%B8%9F%E0%B8%AB%E0%B8%81%E0%B9%84";
 
@@ -128,11 +144,40 @@ const Header = () => {
 
   }
 
-  const user = {
-    name: 'ลงชื่อเข้าใช้',
-    icon: '/user.png'
+  let user;
+  let iconloginlink;
+
+  // Check if username exists
+  if (username == "") {
+    user = {
+      name: 'ลงชื่อเข้าใช้', // "Sign In" in Thai
+      icon: '/user.png'
+    };
+    iconloginlink = "/login";  // Redirect to login if not logged in
+  } else {
+    user = {
+      name: username,
+      icon: '/user.png'
+    };
+    iconloginlink = "#";  // No action needed if already logged in
   }
 
+  const handleLogout = () => {
+    // Remove the cookies
+    Cookies.remove('username');  // Remove the 'username' cookie
+    Cookies.remove('userId');    // Remove the 'userId' cookie
+
+    // Optionally, redirect to the login or home page after logout
+    window.location.href = '/';  // Change to the desired page
+  };
+
+  const [userId, setUserId] = useState(null);
+  const [isClient, setIsClient] = useState(false); // Flag to check client-side
+
+  useEffect(() => {
+    setUserId(Cookies.get('userId')); // Now get the cookie client-side
+    setIsClient(true); // Now we are sure it's the client side
+  }, []);
 
   return (
     <nav className='relative'>
@@ -244,7 +289,7 @@ const Header = () => {
           <details ref={avatarDropdownRef} className="dropdown dropdown-end">
             <summary className="m-1 btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <Image src={user.icon}  draggable="false" alt="Picture of the author" width={50} height={50} className="rounded-full" />
+                <Image src={user.icon} draggable="false" alt="Picture of the author" width={50} height={50} className="rounded-full" />
               </div>
               <FontAwesomeIcon className='absolute end-0 bottom-0 rounded-full border-2 text-white border-[#4F6F52] bg-[#4F6F52] ' icon={faChevronDown} />
             </summary>
@@ -253,7 +298,7 @@ const Header = () => {
               className="mt-3 z-[1] p-2  shadow  menu-sm dropdown-content rounded-box w-64 bg-[#4F6F52] "
             >
               <li>
-                <a href='/login' className=" justify-start flex flex-col hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 shadow-xl">
+                <a href={iconloginlink} className=" justify-start flex flex-col hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 shadow-xl">
                   <div className='flex flex-row  items-center justify-start p-0 pb-1 m-0 '>
                     <Image src={user.icon} draggable="false" alt="Picture of the author" width={50} height={50} className="rounded-full me-1.5 p-0" />
                     <p className='text-white text-xl p-0 m-0' >{user.name}</p>
@@ -275,7 +320,7 @@ const Header = () => {
                   <p className='p-0 px-2 m-0 text-lg text-white content-center '>ให้ความรู้</p>
                 </a>
               </li>
-{/* 
+              {/* 
               <li>
                 <a href='goorle.com' className=" justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 ">
                   <FontAwesomeIcon icon={faQuestion} className='text-white rounded-full p-2 bg-[#1A4D2E]' style={{ width: "25px", height: "25px" }} />
@@ -283,12 +328,26 @@ const Header = () => {
                 </a>
               </li> */}
 
-              <li>
-                <a href='goorle.com' className=" justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0 ">
-                  <FontAwesomeIcon icon={faArrowRightFromBracket} className='text-white rounded-full p-2 bg-[#1A4D2E]' style={{ width: "25px", height: "25px" }} />
-                  <p className='p-0 px-2 m-0 text-lg text-white content-center '>ออกจากระบบ</p>
-                </a>
-              </li>
+<li>
+        {isClient && userId === 'e864ff39' && (
+          <a href='/admin_page' className="justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0">
+            <FontAwesomeIcon icon={faKey} className='text-white rounded-full p-2 bg-[#1A4D2E]' style={{ width: "25px", height: "25px" }} />
+            <p className='p-0 px-2 m-0 text-lg text-white content-center'>หน้าแอดมิน</p>
+          </a>
+        )}
+      </li>
+
+      <li>
+        {isClient && username && (
+          <a href='#' onClick={handleLogout} className="justify-start flex flex-row hover:bg-[#39603D] pb-1 pt-1 px-2 m-0">
+            <FontAwesomeIcon icon={faArrowRightFromBracket} className='text-white rounded-full p-2 bg-[#1A4D2E]' style={{ width: "25px", height: "25px" }} />
+            <p className='p-0 px-2 m-0 text-lg text-white content-center'>ออกจากระบบ</p>
+          </a>
+        )}
+      </li>
+
+
+
 
             </ul>
           </details>

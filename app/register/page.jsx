@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faBuildingColumns } from "@fortawesome/free-solid-svg-icons";
 import Header from '../components/header';
+import Swal from 'sweetalert2';
 
 export default function Register() {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
-    phone: "",
     password: "",
     confirmPassword: ""
   });
@@ -31,7 +31,7 @@ export default function Register() {
     }
 
     try {
-      const response = await fetch('https://us-central1-ffs-thailand.cloudfunctions.net/api/register', {
+      const response = await fetch('https://api-bgtfootqna-as.a.run.app/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -46,12 +46,27 @@ export default function Register() {
       const data = await response.json();
 
       if (response.ok) {
-        alert(`User registered successfully! User ID: ${data.userId}`);
+        Swal.fire({
+          title: "Success!",
+          text: "Login Successful!",
+          icon: "success"
+        });
+
+        // Redirect to the home page or dashboard
+        window.location.href = '/login';
       } else {
-        alert(`Error: ${data.message}`);
+        Swal.fire({
+          title: "Error!",
+          text: "Username or Password is incorrect!",
+          icon: "error"
+        });
       }
     } catch (error) {
-      alert('Error registering user. Please try again later.');
+      aSwal.fire({
+        title: "Error!",
+        text: "Error registering user. Please try again later.",
+        icon: "error"
+      });
     }
   };
 
@@ -84,18 +99,6 @@ export default function Register() {
             id="email"
             className="bg-[#e8dfca] border-4 rounded-lg p-1 text-xl"
             value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="flex flex-col">
-          <label htmlFor="phone" className="text-white">เบอร์โทรศัพท์</label>
-          <input
-            required
-            type="text"
-            id="phone"
-            className="bg-[#e8dfca] border-4 rounded-lg p-1 text-xl"
-            value={formData.phone}
             onChange={handleChange}
           />
         </div>
